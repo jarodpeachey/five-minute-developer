@@ -6,18 +6,19 @@ export const theme = {
     success: '#00ab66',
     error: '#ff6347',
     text: {
-      light: '#FFFFE7',
-      dark: '#21211E',
+      light: '#f7fff7',
+      dark: '#292f36',
     },
     primary: {
-      light: '#ffb81e',
-      main: '#f39237',
-      dark: '#FF6C11',
+      light: '#ffeb8c',
+      main: '#f4d86a',
+      dark: '#e8c547',
+      darker: '#c7a62f'
     },
     secondary: {
-      light: '#0bc7d8',
-      main: '#0bd0a1',
-      dark: '#0ad86a',
+      light: '#4ecdc4',
+      main: '#00d1ed',
+      dark: '#255957',
     },
     gray: {
       one: '#f7f7f7',

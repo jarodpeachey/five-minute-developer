@@ -46,32 +46,51 @@ const Hero = ({ children }) => {
 
 const Background = styled.div`
   background: linear-gradient(
-    180deg,
-    ${(props) => props.theme.color.primary.light} 0%,
-    ${(props) => props.theme.color.primary.light}30 100%
+    160deg,
+    ${(props) => props.theme.color.primary.main}90 0%,
+    ${(props) => props.theme.color.primary.light}40 100%
   );
   position: absolute;
   top: 0;
-  z-index: 2;
+  z-index: 0;
   height: 125%;
   width: 100%;
   opacity: 1;
-  @media (min-width: 769px) {
-    background-position: right center;
+clip-path: polygon(100% 0, 100% 89%, 38% 100%, 0 96%, 0 0);
+  ::after {
+    top: 0;
+    left:0;
+    transform: rotate(0deg);
+    display: block;
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    clip-path: polygon(0 0, 100% 0%, 100% 83%, 0 62%);
+    z-index: 2;
+    background: linear-gradient(
+      to bottom,
+      ${(props) => props.theme.color.primary.main} 0%,
+      ${(props) => props.theme.color.primary.light}00 100%
+    );
   }
-  transition-duration: 0.5s;
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% 83%,
-    90% 88%,
-    78% 92%,
-    60% 95%,
-    40% 95%,
-    22% 92%,
-    10% 88%,
-    0 83%
-  );
+  ::before {
+    top: 0;
+    right: 0;
+    transform: scaleX(-1);
+    display: block;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(0 0, 100% 0%, 100% 83%, 0 62%);
+    z-index: 2;
+    background: linear-gradient(
+      to bottom,
+      ${(props) => props.theme.color.primary.main} 0%,
+      ${(props) => props.theme.color.primary.light}00 100%
+    );
+  }
 `;
 
 const MainWrapper = styled.div`
@@ -83,6 +102,39 @@ const MainWrapper = styled.div`
   margin-top: -94px;
   z-index: 3;
   position: relative;
+  ::after {
+    top: -100px;
+    transform: rotate(0deg);
+    display: block;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(0 0, 100% 0%, 100% 83%, 0 62%);
+    z-index: 2;
+    background: linear-gradient(
+      to bottom,
+      ${(props) => props.theme.color.primary.darker}90 0%,
+      ${(props) => props.theme.color.primary.main}00 100%
+    );
+  }
+  ::before {
+    top: -100px;
+    right: -200px;
+    transform: scaleX(-1) rotate(15deg);
+    display: block;
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    clip-path: polygon(0 0, 100% 0%, 100% 83%, 0 62%);
+    z-index: 2;
+    background: linear-gradient(
+      to bottom,
+      ${(props) => props.theme.color.primary.darker}90 0%,
+      ${(props) => props.theme.color.primary.main}00 100%
+    );
+  }
 `;
 
 const HeroContainer = styled.div`
@@ -124,7 +176,7 @@ const Category = styled.span`
 
 const Title = styled.h1`
   font-size: 38px;
-  color: white;
+  color: ${(props) => props.theme.color.text.dark} !important;
   @media (min-width: 769px) {
     font-size: 44px;
   }
@@ -134,7 +186,7 @@ const Title = styled.h1`
 `;
 
 const SubTitle = styled.h3`
-  color: #ffffff90 !important;
+  color: ${(props) => props.theme.color.text.dark}cc !important;
   font-size: 26px;
   max-width: 750px;
   text-transform: none;

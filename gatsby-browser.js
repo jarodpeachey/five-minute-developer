@@ -1,26 +1,21 @@
-
-import React from 'react';
-import { StylesProvider } from './src/providers/StylesProvider';
-import Layout from './src/components/layout/layout';
+import React from "react";
+import { StylesProvider } from "./src/providers/StylesProvider";
+import Layout from "./src/components/layout/layout";
 // import { FirebaseProvider } from './src/providers/FirebaseProvider';
-import { AppProvider } from './src/providers/AppProvider';
+import { AppProvider } from "./src/providers/AppProvider";
 
 export const wrapRootElement = ({ element }) => {
   console.log(element);
 
   return (
     // <FirebaseProvider>
-      <AppProvider>
-        <StylesProvider>{element}</StylesProvider>
-      </AppProvider>
+    <AppProvider>
+      <StylesProvider>{element}</StylesProvider>
+    </AppProvider>
     // </FirebaseProvider>
   );
 };
 
 export const wrapPageElement = ({ element }) => {
-  return (
-    <Layout>
-      {element}
-    </Layout>
-  );
+  return <Layout>{element}</Layout>;
 };

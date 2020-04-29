@@ -17,7 +17,15 @@ import {
   faTimes,
   faCode,
 } from '@fortawesome/free-solid-svg-icons';
-import { fab, faLinkedin, faGithub, faReact, faCss3, faHtml5, faCss3Alt } from '@fortawesome/free-brands-svg-icons';
+import {
+  fab,
+  faLinkedin,
+  faGithub,
+  faReact,
+  faCss3,
+  faHtml5,
+  faCss3Alt,
+} from '@fortawesome/free-brands-svg-icons';
 import Footer from './Footer';
 import Header from './Header';
 import { AppContext } from '../../providers/AppProvider';

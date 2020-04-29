@@ -56,6 +56,6 @@ const StyleWrapper = styled.div`
   display: inline-block;
   padding-right: ${(props) => props.width}px;
   h1, h2, h3, h4, h5, h6 {
-    color: ${props => props.theme.color.text.light};
+    color: ${props => props.theme.color.text.dark};
   }
 `;

@@ -1,64 +1,60 @@
-const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
+// const { isFuture } = require('date-fns');
+// const { format } = require('date-fns');
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
 
-  const blogPost = path.resolve(`./src/templates/post.js`)
-  const result = await graphql(
-    `
-      {
-        allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: DESC }
-          limit: 1000
-        ) {
-          edges {
-            node {
-              fields {
-                slug
-              }
-              frontmatter {
+  const result = await graphql(`
+    {
+      posts: allCosmicjsPosts(filter: { status: { eq: "published" } }) {
+        edges {
+          node {
+            metadata {
+              author {
+                metadata {
+                  bio
+                  email
+                  github
+                  twitter
+                  website
+                  image {
+                    url
+                  }
+                }
                 title
               }
+              hero {
+                url
+              }
             }
+            title
+            published_at(formatString: "DD/MM/YYYY")
+            content
+            status
+            slug
           }
         }
       }
-    `
-  )
+    }
+  `);
 
-  if (result.errors) {
-    throw result.errors
-  }
+  console.log(result);
 
-  // Create blog posts pages.
-  const posts = result.data.allMarkdownRemark.edges
+  if (result.errors) throw result.errors;
 
-  posts.forEach((post, index) => {
-    const previous = index === posts.length - 1 ? null : posts[index + 1].node
-    const next = index === 0 ? null : posts[index - 1].node
+  result.data.posts.edges.forEach(({ node }, index) => {
+    const path = `/blog/${node.slug}`;
 
     createPage({
-      path: post.node.fields.slug,
-      component: blogPost,
+      path,
+      component: require.resolve('./src/templates/post.js'),
       context: {
-        slug: post.node.fields.slug,
-        previous,
-        next,
+        slug: node.slug,
       },
-    })
-  })
-}
+    });
+  });
+};
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
-  }
-}
+// exports.createPages = async ({ graphql, actions }) => {
+//   await createBlogPostPages(graphql, actions);
+// };

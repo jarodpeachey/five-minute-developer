@@ -1,0 +1,55 @@
+
+function piResponse() {
+		piSetCookie('visitor_id517431', '350056065', 3650);
+			piSetCookie('visitor_id517431-hash', 'bef4050c8571746fc935497d51a6a46acb15e38ac6d5fdcf4f47367f214a5a212cf8ef6524a2f004228c9ec1ef3e03a4d31688a9', 3650);
+		
+		if (document.location.protocol != "https:" || (document.location.protocol == "https:" && true)) {
+		var analytics_link = document.location.protocol + "//" + "www2.fauna.com/analytics?";
+		pi.tracker.visitor_id='350056065';
+
+				pi.tracker.visitor_id_sign='bef4050c8571746fc935497d51a6a46acb15e38ac6d5fdcf4f47367f214a5a212cf8ef6524a2f004228c9ec1ef3e03a4d31688a9';
+		
+				pi.tracker.campaign_id='24614';
+		
+		var variables = 'conly=true';
+		for (property in pi.tracker) {
+					variables += "&" + property + "=" + encodeURIComponent(pi.tracker[property]);
+				}
+		var headID = document.getElementsByTagName("head")[0];
+		piScriptObj[piScriptNum] = document.createElement('script');
+		piScriptObj[piScriptNum].type = 'text/javascript';
+		piScriptObj[piScriptNum].src = analytics_link + variables;
+		headID.appendChild(piScriptObj[piScriptNum]);
+		piScriptObj[piScriptNum].onload = function() { return; }
+	}
+	
+			// Get script name
+	const pdjsScriptName = typeof window.getPardotUrl === 'function' ? 'pd.js' : 'pi.js';
+
+		// Cache buster
+	if (typeof piVersion === 'undefined' || piVersion !== '1.0.0') {
+		// Get script domain
+		const pdjsDomain = (document.location.protocol === 'https:') ? 'https://pi.pardot.com' : 'http://cdn.pardot.com';
+
+		// Create iframe
+		const pdjsIframe = document.createElement('iframe');
+		pdjsIframe.name = pdjsIframe.id = 'ifr_' + Date.now();
+		pdjsIframe.width = pdjsIframe.height = 0;
+		document.body.appendChild(pdjsIframe);
+
+		// Create form
+		const pdjsForm = document.createElement('form');
+		pdjsForm.method = "POST";
+		pdjsForm.target = pdjsIframe.name;
+		pdjsForm.action = pdjsDomain + '/' + pdjsScriptName;
+		document.body.appendChild(pdjsForm);
+
+		// Request script
+		pdjsForm.submit();
+	}
+	}
+piResponse();
+
+
+
+
