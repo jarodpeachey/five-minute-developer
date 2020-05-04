@@ -14,39 +14,57 @@ const RecentPostsSection = ({ data }) => {
 
   return (
     <Section
+      noContainer
       customStyles={`
         position: relative;
         padding-top: 0px;
-        margin-top: -120px;
+        // margin-top: -120px;
         position: relative;
         background: ${theme.color.gray.one};
-        clip-path: ${theme.clip.top};
-        padding-top: 76px;
+        // padding-top: 76px;
         z-index: 999;
-        // ::before {
-        //   width: 140%;
-        //   height: 300px;
-        //   position: absolute;
-        //   content: "";
-        //   display: block;
-        //   top: -100px;
-        //   left: -20%;
-        //   transform: rotate(-8deg);
-        //   background: ${theme.color.gray.one};
-        //   z-index: -999;
-        // }
         .container {
           padding-top: 0;
         }
+          ::before {
+            position: absolute;
+            display: block;
+            height: 100px;
+            width: 100%;
+            content: "";
+            background: #f7f7f7;
+            top: -50px;
+            clip-path: ${theme.clip.top};
+          }
       `}
     >
       <Title className='center'>Recent Posts</Title>
-      <Posts category='React' color='#61dafb' />
+      {/* <PostsWrapper> */}
+      <Posts gray category='React' color='#61dafb' />
       <Posts category='Gatsby' color='#663399' />
-      <Posts category='HTML/CSS' color='#F16529' />
+      <Posts gray category='HTML/CSS' color='#F16529' />
+      {/* </PostsWrapper> */}
     </Section>
   );
 };
+
+const SVG = styled.svg`
+  width: 100%;
+  height: 80px;
+`;
+
+const BackgroundWrap = styled.div`
+  filter: drop-shadow(0 -10px 16px #00000010);
+  display: block;
+  z-index: 999;
+  width: 100%;
+  path {
+    width: 100%:
+    height: 100%;
+  }
+`;
+
+const PostsWrapper = styled.span``;
 
 const Title = styled.h1`
   // color: white !important;

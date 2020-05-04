@@ -11,7 +11,9 @@ const Section = ({
   center,
   customStyles,
   dark,
+  noContainer,
   light,
+  verticalPadding,
 }) => {
   const theme = useContext(ThemeContext);
 
@@ -22,9 +24,16 @@ const Section = ({
       center={center}
       dark={dark}
       light={light}
-      color={dark ? theme.color.primary.backgroundDark : light ? theme.color.primary.backgroundLight : background || 'transparent'}
+      verticalPadding={verticalPadding}
+      color={
+        dark
+          ? theme.color.primary.backgroundDark
+          : light
+          ? theme.color.primary.backgroundLight
+          : background || 'transparent'
+      }
     >
-      <div className='container'>
+      <div className={noContainer ? '' : 'container'}>
         {title && <Title dark={dark}>{title}</Title>}
         {subtitle && <SubTitle dark={dark}>{subtitle}</SubTitle>}
         {children}
@@ -34,16 +43,19 @@ const Section = ({
 };
 
 const Title = styled.h2`
-  color: ${props => props.dark ? 'white' : props.theme.color.text.heading};
+  color: ${(props) => (props.dark ? 'white' : props.theme.color.text.heading)};
 `;
 
 const SubTitle = styled.p`
-  color: ${props => props.dark ? props.theme.color.text.light : props.theme.color.text.dark};
+  color: ${(props) =>
+    props.dark ? props.theme.color.text.light : props.theme.color.text.dark};
 `;
 
 const StyledSection = styled.section`
   text-align: ${(props) => (props.center ? 'center' : 'inherit')};
   background: ${(props) => props.color};
+  padding-top: ${props => props.verticalPadding ? '60px' : null} !important;
+  padding-bottom: ${props => props.verticalPadding ? '60px' : null} !important;
   ${(props) =>
     props.fullHeight &&
     css`

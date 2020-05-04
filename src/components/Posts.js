@@ -2,14 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import Row from './grid/Row';
 import { Link } from 'gatsby';
+import Section from './layout/Section';
 
-const Posts = ({ category, color }) => {
+const Posts = ({ category, color, gray }) => {
   return (
-    <span>
-      <CategoryTitle>{category}</CategoryTitle>
+    <Section background={gray ? '#f7f7f7' : 'white'} verticalPadding>
+      <CategoryTitle color={color}>{category}</CategoryTitle>
       <Row spacing={[24]} breakpoints={[576, 769]}>
         <div widths={[6, 4]}>
-          <Post color={color}>
+          <Post color={color} gray={gray}>
             <PostTitle color={color}>Using React Hooks With Gatsby</PostTitle>
             <PostExcerpt>
               React Hooks and Gatsby are two powerful tools, and using them
@@ -18,7 +19,7 @@ const Posts = ({ category, color }) => {
           </Post>
         </div>
         <div widths={[6, 4]}>
-          <Post color={color}>
+          <Post color={color} gray={gray}>
             <PostTitle color={color}>Using React Hooks With Gatsby</PostTitle>
             <PostExcerpt>
               React Hooks and Gatsby are two powerful tools, and using them
@@ -27,7 +28,7 @@ const Posts = ({ category, color }) => {
           </Post>
         </div>
         <div widths={[6, 4]}>
-          <Post color={color}>
+          <Post color={color} gray={gray}>
             <PostTitle color={color}>Using React Hooks With Gatsby</PostTitle>
             <PostExcerpt>
               React Hooks and Gatsby are two powerful tools, and using them
@@ -36,7 +37,7 @@ const Posts = ({ category, color }) => {
           </Post>
         </div>
         <div widths={[6, 4]}>
-          <Post color={color}>
+          <Post color={color} gray={gray}>
             <PostTitle color={color}>Using React Hooks With Gatsby</PostTitle>
             <PostExcerpt>
               React Hooks and Gatsby are two powerful tools, and using them
@@ -45,7 +46,7 @@ const Posts = ({ category, color }) => {
           </Post>
         </div>
         <div widths={[6, 4]}>
-          <Post color={color}>
+          <Post color={color} gray={gray}>
             <PostTitle color={color}>Using React Hooks With Gatsby</PostTitle>
             <PostExcerpt>
               React Hooks and Gatsby are two powerful tools, and using them
@@ -54,14 +55,31 @@ const Posts = ({ category, color }) => {
           </Post>
         </div>
       </Row>
-    </span>
+    </Section>
   );
 };
 
 const CategoryTitle = styled.h2`
-  margin: 0 auto;
+  margin: 0 auto !important;
   width: fit-content;
   margin-top: 64px;
+  position: relative;
+  padding: 8px 0;
+  margin-bottom: 32px !important;
+  color: white !important;
+  z-index: 9999;
+  display: block;
+  ::after {
+    content: '';
+    background: ${(props) => props.color} !important;
+    width: 300px;
+    height: 100%;
+    position: absolute;
+    left: calc(50% - 150px);
+    top: 0;
+    z-index: -1;
+    box-shadow: 8px 8px 0 0 ${(props) => props.color}20;
+  }
 `;
 
 const Post = styled(Link)`
@@ -75,7 +93,10 @@ const Post = styled(Link)`
   text-decoration: none;
   display: block;
   transition: all 0.2s ease-out;
-  box-shadow: 12px 12px 0px ${(props) => props.color}20;
+  box-shadow: ${(props) =>
+    !props.gray
+      ? `12px 12px 0px ${props.color}20, 0px -4px 0px #f7f7f7`
+      : `12px 12px 0px ${props.color}20`};
   :hover {
     transition: 0.2s ease-out;
     box-shadow: 20px 20px 0px -3px ${(props) => props.color}20;

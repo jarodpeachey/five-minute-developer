@@ -47,7 +47,7 @@ const GlobalStyle = createGlobalStyle`
   padding-right: ${(props) => props.width}px !important;
   p,
   small,
-  code {
+  code, a {
     color: ${(props) => props.theme.color.text.paragraph} !important;
   }
   strong {

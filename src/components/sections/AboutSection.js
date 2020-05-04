@@ -11,14 +11,7 @@ const AboutSection = ({ data }) => {
   const theme = useContext(ThemeContext);
 
   return (
-    <span
-      style={{
-        position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <span>
       <BackgroundWrap>
         <Section
           customStyles={`
@@ -30,113 +23,114 @@ const AboutSection = ({ data }) => {
   z-index: 999;
   margin-top: 124px;
   display: block;
-clip-path: ${theme.clip.insetTop};      `}
+  .container {
+    margin-top: -50px;
+  }
+  ::before {
+    position: absolute;
+    display: block;
+    height: 100px;
+    width: 100%;
+    content: "";
+    background: white;
+    top: -50px;
+    clip-path: ${theme.clip.top};
+  }
+        // clip-path: ${theme.clip.mobileTop};
+        // @media(min-width: 576px) {
+        //   clip-path: ${theme.clip.tabletTop}
+        // }
+        // @media (min-width: 769px) {
+        //   clip-path: ${theme.clip.top};
+        // }
+  padding-top: 112px; padding-bottom: 64px;      `}
         >
-          <div
-            style={{
-              maxWidth: 576,
-              padding: 32,
-              paddingTop: 112,
-              margin: '0 auto',
-              background: 'white',
-              boxShadow: '2px 2px 15px -5px #00000050',
-              borderRadius: 5,
-              opacity: 0,
-              height: '100%',
-            }}
-          >
-            <Icon>
-              <FontAwesomeIcon icon='code' />
-            </Icon>
-            <h1 className='center'>Learn like your career depends on it</h1>
-            <p className='center'>Because it does.</p>
-            <p className='center'>
-              The web development industry is constantly changing and evolving.
-              Whether it's a new language version, a new "best" method, or a new
-              language all together, you have to stay on top of your game.
-              That's why increasing your knowledge is vital to your career.
-            </p>
-            <p className='center'>
-              And that's why I created Five Minute Developer. So you can learn
-              new tricks, hacks, and languages*, without taking away your time
-              (because time is money).
-            </p>
-            <p className='center'>
-              Go ahead. Click the button to start learning!
-            </p>
-            <p className='center'>Seriously. Click it.</p>
-            <Button link='/blog' center>
-              Start Learning!
-            </Button>
-            <Spacer height={32} />
-            <Footnote>
-              * Five Minute Developer does not guarantee you will learn a new
-              programming language in 5 minutes. Probably just parts of one.
-              It's not physically possible to learn a new programming language
-              in 5 minutes.
-            </Footnote>
-          </div>
-        </Section>
-      </BackgroundWrap>
-      <div
+          {/* <Container
         className='container'
         style={{
           maxWidth: 576,
           background: 'white',
           padding: 32,
           paddingTop: 112,
-          boxShadow: `2px 2px 15px -5px #999`,
+          boxShadow: '2px 2px 15px -5px #999',
           borderRadius: 5,
           marginTop: '0px',
           position: 'absolute',
           top: 0,
           zIndex: 999,
+          '@media(max-width: 576px)': {
+            clipPath: theme.clip.mobileTop,
+          },
         }}
-      >
-        <Icon>
-          <FontAwesomeIcon icon='code' />
-        </Icon>
-        <h1 className='center'>Learn like your career depends on it</h1>
-        <p className='center'>Because it does.</p>
-        <p className='center'>
-          The web development industry is constantly changing and evolving.
-          Whether it's a new language version, a new "best" method, or a new
-          language all together, you have to stay on top of your game. That's
-          why increasing your knowledge is vital to your career.
-        </p>
-        <p className='center'>
-          And that's why I created Five Minute Developer. So you can learn new
-          tricks, hacks, and languages*, without taking away your time (because
-          time is money).
-        </p>
-        <p className='center'>Go ahead. Click the button to start learning!</p>
-        <p className='center'>Seriously. Click it.</p>
-        <Button link='/blog' center>
-          Start Learning!
-        </Button>
-        <Spacer height={32} />
-        <Footnote>
-          * Five Minute Developer does not guarantee you will learn a new
-          programming language in 5 minutes. Probably just parts of one. It's
-          not physically possible to learn a new programming language in 5
-          minutes.
-        </Footnote>
-      </div>
+      > */}
+          <Icon
+            style={{
+              fontFamily: 'Raleway',
+              fontWeight: 'bold',
+            }}
+          >
+            {'<5>'}
+          </Icon>
+          <h1 className='center'>Learn like your career depends on it</h1>
+          <p className='center'>Because it does.</p>
+          <p className='center'>
+            The web development industry is constantly changing and evolving.
+            Whether it's a new language version, a new "best" method, or a new
+            language all together, you have to stay on top of your game. That's
+            why increasing your knowledge is vital to your career.
+          </p>
+          <p className='center'>
+            And that's why I created Five Minute Developer. So you can learn new
+            tricks, hacks, and languages*, without taking away your time
+            (because time is money).
+          </p>
+          <p className='center'>
+            Go ahead. Click the button to start learning!
+          </p>
+          <p className='center'>Seriously. Click it.</p>
+          <Button link='/blog' center>
+            Start Learning!
+          </Button>
+          <Spacer height={32} />
+          <Footnote className='center'>
+            * Five Minute Developer does not guarantee you will learn a new
+            programming language in 5 minutes. Probably just parts of one. It's
+            not physically possible to learn a new programming language in 5
+            minutes.
+          </Footnote>
+          {/* </Container>
+           */}
+        </Section>
+      </BackgroundWrap>
     </span>
   );
 };
 
+const Container = styled.div`
+  max-width: 576px;
+  background: white;
+  padding: 32px;
+  padding-top: 112px;
+  box-shadow: 2px 2px 15px -5px #999;
+  border-radius: 5px;
+  margin-top: 0px;
+  position: absolute;
+  top: 0;
+  z-index: 999;
+  @media (max-width: 576px) {
+    clip-path: ${(props) => props.theme.clip.tabletTop};
+  }
+`;
+
 const BackgroundWrap = styled.div`
-  filter: drop-shadow(
-    0 -10px 6px #88888840
-  );
+  filter: drop-shadow(0 -10px 16px #00000010);
   display: block;
   z-index: 999;
   width: 100%;
 `;
 
 const Icon = styled.div`
-  top: 36px;
+  top: -12px;
   position: absolute;
   left: 0;
   margin: 0 auto;
@@ -168,8 +162,11 @@ const IconTwo = styled.div`
 const Background = styled(Section)``;
 
 const Footnote = styled.small`
+  display: block;
   font-size: 12px;
   margin-top: 16px;
+  max-width: 650px !important;
+  margin: 0 auto;
 `;
 
 export default AboutSection;
