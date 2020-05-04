@@ -22,7 +22,12 @@ const PostTemplate = ({ data, pageContext, location }) => {
         <div>
           {' '}
           <h1>{post.title}</h1>
-          <small>by {post.metadata.author.title}</small>
+          {post.metadata.author && post.metadata.author.title ? (
+            <small>by {post.metadata.author.title}</small>
+          ) : (
+            <small>by Jarod Peachey</small>
+          )}
+          
         </div>
       </FeaturedImage>
 
