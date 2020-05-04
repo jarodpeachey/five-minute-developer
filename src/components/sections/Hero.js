@@ -26,10 +26,10 @@ const Hero = ({ children }) => {
             <Title>
               Grow your web developer skillset, 5 minutes at a time.
             </Title>
-            <SubTitle>
+            {/* <SubTitle>
               Tips, tricks and tutorials to help you advance your career, in
               bite-size chunks that you have time to read
-            </SubTitle>
+            </SubTitle> */}
             {/* <Button center secondary>
               Let's Go!
             </Button> */}
@@ -47,94 +47,25 @@ const Hero = ({ children }) => {
 const Background = styled.div`
   background: linear-gradient(
     160deg,
-    ${(props) => props.theme.color.primary.main}90 0%,
-    ${(props) => props.theme.color.primary.light}40 100%
+    ${(props) => props.theme.color.primary.main} 0%,
+    ${(props) => props.theme.color.primary.main} 100%
   );
   position: absolute;
   top: 0;
   z-index: 0;
-  height: 125%;
+  height: 150%;
   width: 100%;
+  z-index: -999;
   opacity: 1;
-clip-path: polygon(100% 0, 100% 89%, 38% 100%, 0 96%, 0 0);
-  ::after {
-    top: 0;
-    left:0;
-    transform: rotate(0deg);
-    display: block;
-    content: '';
-    position: absolute;
-    width: 200%;
-    height: 100%;
-    clip-path: polygon(0 0, 100% 0%, 100% 83%, 0 62%);
-    z-index: 2;
-    background: linear-gradient(
-      to bottom,
-      ${(props) => props.theme.color.primary.main} 0%,
-      ${(props) => props.theme.color.primary.light}00 100%
-    );
-  }
-  ::before {
-    top: 0;
-    right: 0;
-    transform: scaleX(-1);
-    display: block;
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    clip-path: polygon(0 0, 100% 0%, 100% 83%, 0 62%);
-    z-index: 2;
-    background: linear-gradient(
-      to bottom,
-      ${(props) => props.theme.color.primary.main} 0%,
-      ${(props) => props.theme.color.primary.light}00 100%
-    );
-  }
 `;
 
 const MainWrapper = styled.div`
-  // padding-top: 64px;
-  // height: 100vh;
   display: flex;
+  height: 80vh;
   height: fit-content;
   align-items: center;
   margin-top: -94px;
-  z-index: 3;
   position: relative;
-  ::after {
-    top: -100px;
-    transform: rotate(0deg);
-    display: block;
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    clip-path: polygon(0 0, 100% 0%, 100% 83%, 0 62%);
-    z-index: 2;
-    background: linear-gradient(
-      to bottom,
-      ${(props) => props.theme.color.primary.darker}90 0%,
-      ${(props) => props.theme.color.primary.main}00 100%
-    );
-  }
-  ::before {
-    top: -100px;
-    right: -200px;
-    transform: scaleX(-1) rotate(15deg);
-    display: block;
-    content: '';
-    position: absolute;
-    width: 200%;
-    height: 100%;
-    clip-path: polygon(0 0, 100% 0%, 100% 83%, 0 62%);
-    z-index: 2;
-    background: linear-gradient(
-      to bottom,
-      ${(props) => props.theme.color.primary.darker}90 0%,
-      ${(props) => props.theme.color.primary.main}00 100%
-    );
-  }
 `;
 
 const HeroContainer = styled.div`
@@ -158,14 +89,14 @@ const Categories = styled.div`
 `;
 
 const Category = styled.span`
-  color: ${(props) => props.theme.color.text.light};
+  color: white;
   font-size: 18px;
   padding: 12px;
-  border-bottom: 1px solid ${(props) => props.theme.color.text.light};
+  border-bottom: 1px solid white;
   transition: all 0.2s ease-out;
   :hover {
     cursor: pointer;
-    border-bottom: 2px solid ${(props) => props.theme.color.text.light};
+    border-bottom: 2px solid white;
     position: relative;
     top: 0;
     padding-bottom: 11px;
@@ -175,10 +106,11 @@ const Category = styled.span`
 `;
 
 const Title = styled.h1`
-  font-size: 38px;
-  color: ${(props) => props.theme.color.text.dark} !important;
+  font-size: 46px;
+  color: white !important;
+  text-shadow: 2px 2px #00000020, 0px 0px 0 #ffffff50;
   @media (min-width: 769px) {
-    font-size: 44px;
+    font-size: 56px;
   }
   // font-family: 'overpass', sans-serif !important;
   margin-bottom: 16px;
@@ -186,7 +118,7 @@ const Title = styled.h1`
 `;
 
 const SubTitle = styled.h3`
-  color: ${(props) => props.theme.color.text.dark}cc !important;
+  color: #ffffffcc !important;
   font-size: 26px;
   max-width: 750px;
   text-transform: none;

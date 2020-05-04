@@ -7,7 +7,7 @@ import { isBrowser } from '../../utils/isBrowser';
 const Menu = ({ scrolled }) => {
   return (
     <MenuWrapper scrolled={scrolled}>
-      <MenuItem>
+      <MenuItem scrolled={scrolled}>
         <Link to='/'>Home</Link>
       </MenuItem>
     </MenuWrapper>
@@ -35,13 +35,13 @@ const MenuItem = styled.div`
     padding: ${(props) => (props.button ? '0' : '8px 24px')};
     font-weight: 500;
     transition-duration: 0.25s;
-    color: ${(props) => props.theme.color.text.light};
+    color: ${(props) =>
+      props.scrolled ? props.theme.color.primary.main : 'white'};
   }
   :hover a {
     transition-duration: 0.25s;
     color: ${(props) =>
-      props.button ?
-        '' : props.theme.color.primary.dark} !important;
+      props.button ? '' : props.theme.color.primary.dark} !important;
   }
 `;
 

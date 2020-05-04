@@ -6,14 +6,15 @@ export const theme = {
     success: '#00ab66',
     error: '#ff6347',
     text: {
-      light: '#f7fff7',
-      dark: '#292f36',
+      paragraph: '#636d72',
+      heading: '#2e3c42',
+      dark: '#0e1e24',
     },
     primary: {
       light: '#ffeb8c',
       main: '#f4d86a',
       dark: '#e8c547',
-      darker: '#c7a62f'
+      darker: '#c7a62f',
     },
     secondary: {
       light: '#4ecdc4',
@@ -26,6 +27,12 @@ export const theme = {
       three: '#e9e9e9',
     },
   },
+  clip: {
+    insetTop: 'polygon(38% 8%, 100% 0, 100% 100%, 0 100%, 0 0)',
+    insetBottom: 'polygon(0 100%, 0 0, 100% 0, 100% 100%, 38% 92%)' ,
+    top: 'polygon(38% 0, 100% 8%, 100% 100%, 0 100%, 0 8%)',
+    bottom: 'polygon(0 92%, 0 0, 100% 0, 100% 92%, 38% 100%)'
+  }
 };
 
 export const ThemeContext = React.createContext();

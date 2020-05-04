@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'gatsby';
 
-const Card = ({ children, title }) => {
+const Card = ({ children, title, window }) => {
   return (
     <Wrapper>
       <StyledCard>
@@ -15,6 +15,8 @@ const Card = ({ children, title }) => {
 
 const Wrapper = styled.div`
   margin: 16px 0;
+  background: ${props => props.window ? '#ffffff40' : 'white'};
+  backdrop-filter: blur(8px);
 `;
 
 const StyledCard = styled.div`

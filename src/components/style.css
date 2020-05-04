@@ -12,7 +12,7 @@
 }
 
 #blur {
-  z-index: 9;
+  display: block;
   transition: all 0.25s ease-in-out;
   max-height: 99999999999999999px !important;
 }
@@ -185,18 +185,6 @@ body {
   overflow-x: hidden;
 }
 
-p {
-  line-height: 30px;
-  font-size: 18px;
-  font-weight: 400;
-  font-family: 'Heebo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-p.small {
-  font-size: 16px;
-}
-
 input,
 textarea {
   font-size: 16px;
@@ -261,6 +249,18 @@ button {
   margin: 0;
 }
 
+p {
+  line-height: 30px;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Heebo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+p.large {
+  font-size: 18px;
+}
+
 h1,
 h2,
 h3,
@@ -269,86 +269,55 @@ h5,
 h6 {
   font-family: Inter var, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
+}
+
+.weight-light {
+  font-weight: 400;
+}
+
+.weight-regular {
+  font-weight: 500;
+}
+
+.weight-heavy,
+strong {
   font-weight: 600;
 }
 
-/* h3,
-h4,
-h5,
-h5 {
-  font-family: 'Roboto Mono', sans-serif;
-} */
-
 h1,
 .h1 {
-  font-size: 26px;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  font-size: 2em;
 }
-
-@media (min-width: 718px) {
-  h1,
-  .h1 {
-    font-size: 36px;
-  }
-}
-
 h2,
 .h2 {
-  font-size: 24px;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  font-size: 1.5em;
 }
-
-@media (min-width: 718px) {
-  h2,
-  .h2 {
-    font-size: 32px;
-  }
-}
-
 h3,
 .h3 {
-  font-size: 22px;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  font-size: 1.17em;
 }
-
-@media (min-width: 718px) {
-  h3,
-  .h3 {
-    font-size: 28px;
-  }
-}
-
 h4,
 .h4 {
-  font-size: 20px;
+  margin-block-start: 1.33em;
+  margin-block-end: 1.33em;
+  font-size: 1em;
 }
-
-@media (min-width: 718px) {
-  h4,
-  .h4 {
-    font-size: 24px;
-    line-height: 34px;
-  }
-}
-
 h5,
 .h5 {
-  font-size: 18px;
+  margin-block-start: 1.67em;
+  margin-block-end: 1.67em;
+  font-size: 0.83em;
 }
-
-@media (min-width: 718px) {
-  h5,
-  .h5 {
-    font-size: 20px;
-  }
-}
-
 h6,
 .h6 {
-  font-size: 16px;
-}
-
-@media (min-width: 718px) {
-  h6,
-  .h6 {
-    font-size: 16px;
-  }
+  margin-block-start: 2.33em;
+  margin-block-end: 2.33em;
+  font-size: 0.67em;
 }

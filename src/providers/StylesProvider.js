@@ -33,14 +33,9 @@ export const StylesProvider = (props) => {
     <CustomThemeProvider>
       <ThemeProvider theme={theme}>
         <StyleWrapper
+          theme={theme}
+          textColor={theme.color.text.heading}
           width={scrollbarWidth}
-          gray={
-            isBrowser() ?
-              window.location.pathname.includes('account') ?
-                theme.color.gray.one :
-                'white' :
-              'white'
-          }
         >
           {props.children}
         </StyleWrapper>
@@ -55,7 +50,20 @@ const StyleWrapper = styled.div`
   height: auto;
   display: inline-block;
   padding-right: ${(props) => props.width}px;
-  h1, h2, h3, h4, h5, h6 {
-    color: ${props => props.theme.color.text.dark};
+  p,
+  small,
+  code {
+    color: ${(props) => props.theme.color.text.paragraph};
+  }
+  strong {
+    color: ${(props) => props.theme.color.text.dark};
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: ${(props) => props.theme.color.text.heading};
   }
 `;

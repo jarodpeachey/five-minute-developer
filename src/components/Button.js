@@ -97,8 +97,8 @@ const StyledButton = styled.button`
       margin: 0 !important;
       margin-left: auto !important;
     `}
-  background: ${props => props.theme.color.primary.light};
-  color: ${props => props.theme.color.text.light};
+  background: ${(props) => props.theme.color.primary.dark};
+  color: white;
   ${(props) =>
     props.left &&
     css`
@@ -110,6 +110,7 @@ const StyledButton = styled.button`
     css`
       margin: 0 auto !important;
     `}
+  box-shadow: 2px 2px 6px -2px #00000090;
 `;
 
 export default Button;
