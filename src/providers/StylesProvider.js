@@ -2,7 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import '../components/style.css';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { theme, CustomThemeProvider } from '../components/theme';
 import { isBrowser } from '../utils/isBrowser';
 
@@ -32,31 +32,26 @@ export const StylesProvider = (props) => {
   return (
     <CustomThemeProvider>
       <ThemeProvider theme={theme}>
-        <StyleWrapper
-          theme={theme}
-          textColor={theme.color.text.heading}
-          width={scrollbarWidth}
-        >
-          {props.children}
-        </StyleWrapper>
+        <GlobalStyle theme={theme} />
+        {props.children}
       </ThemeProvider>
     </CustomThemeProvider>
   );
 };
 
-const StyleWrapper = styled.div`
-  width: 100vw;
-  overflow: hidden;
-  height: auto;
-  display: inline-block;
-  padding-right: ${(props) => props.width}px;
+const GlobalStyle = createGlobalStyle`
+  width: 100vw !important;
+  overflow: hidden !important;
+  height: auto !important;
+  display: inline-block !important;
+  padding-right: ${(props) => props.width}px !important;
   p,
   small,
   code {
-    color: ${(props) => props.theme.color.text.paragraph};
+    color: ${(props) => props.theme.color.text.paragraph} !important;
   }
   strong {
-    color: ${(props) => props.theme.color.text.dark};
+    color: ${(props) => props.theme.color.text.dark} !important;
   }
   h1,
   h2,
@@ -64,6 +59,30 @@ const StyleWrapper = styled.div`
   h4,
   h5,
   h6 {
-    color: ${(props) => props.theme.color.text.heading};
+    color: ${(props) => props.theme.color.text.heading} !important;
+  }
+`;
+
+const StyleWrapper = styled.div`
+  width: 100vw !important;
+  overflow: hidden !important;
+  height: auto !important;
+  display: inline-block !important;
+  padding-right: ${(props) => props.width}px !important;
+  p,
+  small,
+  code {
+    color: ${(props) => props.theme.color.text.paragraph} !important;
+  }
+  strong {
+    color: ${(props) => props.theme.color.text.dark} !important;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: ${(props) => props.theme.color.text.heading} !important;
   }
 `;
