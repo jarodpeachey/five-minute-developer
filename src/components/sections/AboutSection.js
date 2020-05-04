@@ -128,7 +128,7 @@ clip-path: ${theme.clip.insetTop};      `}
 
 const BackgroundWrap = styled.div`
   filter: drop-shadow(
-    0 -10px 6px ${(props) => props.theme.color.primary.dark}cc
+    0 -10px 6px #88888840
   );
   display: block;
   z-index: 999;

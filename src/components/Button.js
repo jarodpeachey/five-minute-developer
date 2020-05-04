@@ -97,7 +97,11 @@ const StyledButton = styled.button`
       margin: 0 !important;
       margin-left: auto !important;
     `}
-  background: ${(props) => props.theme.color.primary.dark};
+  background: linear-gradient(
+    160deg,
+    ${(props) => props.theme.color.primary.main} 0%,
+    ${(props) => props.theme.color.primary.main} 100%
+  );
   color: white;
   ${(props) =>
     props.left &&

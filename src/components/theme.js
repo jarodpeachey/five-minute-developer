@@ -11,8 +11,9 @@ export const theme = {
       dark: '#0e1e24',
     },
     primary: {
-      light: '#ffeb8c',
-      main: '#f4d86a',
+      lighter: '#ffeb8c',
+      light: '#f4d86a',
+      main: '#F16529',
       dark: '#e8c547',
       darker: '#c7a62f',
     },
@@ -29,10 +30,10 @@ export const theme = {
   },
   clip: {
     insetTop: 'polygon(38% 8%, 100% 0, 100% 100%, 0 100%, 0 0)',
-    insetBottom: 'polygon(0 100%, 0 0, 100% 0, 100% 100%, 38% 92%)' ,
+    insetBottom: 'polygon(0 100%, 0 0, 100% 0, 100% 100%, 38% 92%)',
     top: 'polygon(38% 0, 100% 8%, 100% 100%, 0 100%, 0 8%)',
-    bottom: 'polygon(0 92%, 0 0, 100% 0, 100% 92%, 38% 100%)'
-  }
+    bottom: 'polygon(0 92%, 0 0, 100% 0, 100% 92%, 38% 100%)',
+  },
 };
 
 export const ThemeContext = React.createContext();

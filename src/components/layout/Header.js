@@ -21,12 +21,12 @@ const Header = ({ siteTitle }) => {
   useEffect(() => {
     window.addEventListener('scroll', onScroll);
 
-    const inner = document.getElementById('blur') ?
-      document.getElementById('blur').offsetWidth :
-      0;
-    const outer = document.getElementById('mobile-menu') ?
-      document.getElementById('mobile-menu').offsetWidth :
-      0;
+    const inner = document.getElementById('blur')
+      ? document.getElementById('blur').offsetWidth
+      : 0;
+    const outer = document.getElementById('mobile-menu')
+      ? document.getElementById('mobile-menu').offsetWidth
+      : 0;
 
     setWidth(outer - inner);
 
@@ -63,9 +63,7 @@ const Header = ({ siteTitle }) => {
           <Wrapper id='header' open={open} scrolled={scrolled}>
             <div className='container'>
               <Flex>
-                <SiteTitle scrolled={scrolled}>
-                  5 Minute Dev
-                </SiteTitle>
+                <SiteTitle scrolled={scrolled}>5 Minute Dev</SiteTitle>
                 <Menu scrolled={scrolled} />
                 {/* <MobileMenu scrolled={scrolled} /> */}
                 <MobileMenuToggle
@@ -122,24 +120,21 @@ const Wrapper = styled.header`
   }
   background: ${(props) =>
     props.open ? 'white' : props.scrolled ? 'white' : 'transparent'};
-  color: ${(props) =>
-    props.scrolled ?
-      props.theme.color.primary.light :
-      props.theme.color.primary.light} !important;
+  color: ${(props) => (props.scrolled ? '' : 'white')} !important;
   transition-duration: 0.25s;
   transition: all 0.25s ease-in;
   box-shadow: ${(props) =>
-    props.open ?
-      'none' :
-      props.scrolled ?
-      `0 5px 60px -20px ${props.theme.color.primary.light}60` :
-      ''};
+    props.open
+      ? 'none'
+      : props.scrolled
+      ? `0 5px 60px -20px ${props.theme.color.primary.light}60`
+      : ''};
   border-bottom: ${(props) =>
-    props.open ?
-      '2px solid #e8e8e8' :
-      props.scrolled ?
-      '2px solid #e8e8e8' :
-      '2px solid transparent'};
+    props.open
+      ? '2px solid #e8e8e8'
+      : props.scrolled
+      ? '2px solid #e8e8e8'
+      : '2px solid transparent'};
   position: fixed;
   left: 0;
   top: 0;
@@ -160,13 +155,16 @@ const SiteTitle = styled.h1`
   letter-spacing: 3px;
   text-transform: uppercase;
   font-size: 22px;
+  color: ${(props) =>
+    props.scrolled ? props.theme.color.primary.main : 'white'} !important;
+
   @media (min-width: 769px) {
     font-size: 26px;
   }
   z-index: 999;
   svg {
-    color: ${(props) => props.theme.color.primary.main} !important;
-    fill: ${(props) => props.theme.color.primary.main} !important;
+    color: ${(props) =>
+      props.scrolled ? props.theme.color.primary.main : 'white'} !important;
     margin-right: 8px;
     position: relative;
     top: -1px;

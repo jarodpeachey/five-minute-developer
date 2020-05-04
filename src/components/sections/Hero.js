@@ -48,7 +48,7 @@ const Background = styled.div`
   background: linear-gradient(
     160deg,
     ${(props) => props.theme.color.primary.main} 0%,
-    ${(props) => props.theme.color.primary.main} 100%
+    ${(props) => props.theme.color.primary.light} 100%
   );
   position: absolute;
   top: 0;
