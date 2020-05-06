@@ -24,7 +24,18 @@ const Button = ({
   return (
     <span>
       {link ? (
-        <Link className='no-styling' to={link}>
+        <Link
+          className={
+            left
+              ? 'no-styling left'
+              : center
+              ? 'no-styling center'
+              : right
+              ? 'no-styling right'
+              : 'no-styling'
+          }
+          to={link}
+        >
           <StyledButton
             disabled={disabled}
             small={small}
@@ -81,7 +92,7 @@ const StyledButton = styled.button`
   border: none !important;
   border-radius: 50px;
   cursor: ${(props) => (props.disabled ? 'initial' : 'pointer')} !important;
-  transition-duration: 0.5s !important;
+  // transition-duration: 0.5s !important;
   letter-spacing: 1.1px !important;
   font-size: ${(props) => (props.small ? '13px' : '16px')} !important;
   font-weight: 600 !important;
@@ -114,7 +125,19 @@ const StyledButton = styled.button`
     css`
       margin: 0 auto !important;
     `}
-  box-shadow: 2px 2px 6px -2px #00000090;
+  transition: all 0.1s ease-out;
+  :hover {
+box-shadow: ${(props) =>
+  `4px 6px 28px -6px ${props.theme.color.primary.main}90`};
+    transition: all 0.1s ease-out;
+    transform: scale(1.01);
+  }
+  :active {
+    transform: none;
+    box-shadow: none;
+    transition: all 0.1s ease-out;
+  }
+
 `;
 
 export default Button;

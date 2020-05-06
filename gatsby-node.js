@@ -10,6 +10,10 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             metadata {
+              categories {
+                title
+                slug
+              }
               author {
                 metadata {
                   bio
@@ -31,6 +35,14 @@ exports.createPages = async ({ graphql, actions }) => {
             published_at(formatString: "DD/MM/YYYY")
             content
             status
+            slug
+          }
+        }
+      }
+      categories: allCosmicjsCategories {
+        edges {
+          node {
+            title
             slug
           }
         }

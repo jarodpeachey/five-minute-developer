@@ -36,13 +36,6 @@ const AboutSection = ({ data }) => {
     top: -50px;
     clip-path: ${theme.clip.top};
   }
-        // clip-path: ${theme.clip.mobileTop};
-        // @media(min-width: 576px) {
-        //   clip-path: ${theme.clip.tabletTop}
-        // }
-        // @media (min-width: 769px) {
-        //   clip-path: ${theme.clip.top};
-        // }
   padding-top: 112px; padding-bottom: 64px;      `}
         >
           {/* <Container

@@ -17,12 +17,12 @@ const Hero = ({ children }) => {
         <MainWrapper>
           <Background></Background>
           <HeroContainer className='container'>
-            <Categories>
+            {/* <Categories>
               <Category>HTML</Category>
               <Category>CSS</Category>
               <Category>React</Category>
               <Category>Gatsby</Category>
-            </Categories>
+            </Categories> */}
             <Title>
               Grow your web developer skillset, 5 minutes at a time.
             </Title>
@@ -61,7 +61,7 @@ const Background = styled.div`
 
 const MainWrapper = styled.div`
   display: flex;
-  height: 80vh;
+  height: 50vh;
   height: fit-content;
   align-items: center;
   margin-top: -94px;

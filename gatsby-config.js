@@ -25,7 +25,7 @@ module.exports = {
       resolve: 'gatsby-source-cosmicjs',
       options: {
         bucketSlug: 'five-minute-developer', // Bucket Slug
-        objectTypes: ['posts', 'settings'], // List of the Object Types you want to be able to request from Gatsby.
+        objectTypes: ['posts', 'categories'], // List of the Object Types you want to be able to request from Gatsby.
         apiAccess: {
           read_key: '5UgToyTzeJ411K1ZlM4b242npJOY4XwknC6xpi2E6zYP0Saxgp',
         },
