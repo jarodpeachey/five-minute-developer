@@ -195,6 +195,9 @@ const FeaturedImageContent = styled.div`
   justify-content: center;
   text-align: center;
   padding: 200px 0 64px;
+  @media(max-width: 400px) {
+    padding: 164px 0 64px;
+  }
   // background: black;
   overflow: visible;
   // span {
@@ -219,6 +222,9 @@ const PostTitle = styled.h1`
   margin: 0 auto;
   font-size: 48px;
   max-width: 769px;
+  @media (max-width: 400px) {
+    font-size: 38px;
+  }
   transition: opacity 2s ease-out;
   opacity: ${(props) => (props.scroll > props.height - 500 ? 0 : 1)} !important;
 `;
@@ -240,11 +246,17 @@ const PostTitleTwo = styled.h1`
         : 'opacity .5s ease-out'} !important;
     color: white !important;
   }
-  height: 80px;
+  height: fit-content;
   z-index: 9999;
   margin-top: 0px;
   padding-top: 25px;
   background: black;
+  padding-bottom: 12px;
+  @media (max-width: 400px) {
+    padding-top: 50px;
+    height: fit-content;
+    padding-bottom: 4px;
+  }
 `;
 
 const ImageOverlay = styled.div`
