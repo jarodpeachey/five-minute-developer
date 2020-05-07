@@ -253,9 +253,10 @@ const PostTitleTwo = styled.h1`
   background: black;
   padding-bottom: 12px;
   @media (max-width: 400px) {
-    padding-top: 50px;
     height: fit-content;
-    padding-bottom: 4px;
+    // padding-bottom: 4px;
+    padding: 8px 0;
+    font-size: 20px;
   }
 `;
 
