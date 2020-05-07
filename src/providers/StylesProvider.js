@@ -50,6 +50,9 @@ const GlobalStyle = createGlobalStyle`
   code, a {
     color: ${(props) => props.theme.color.text.paragraph} !important;
   }
+  pre {
+    overflow: scroll;
+  }
   strong {
     color: ${(props) => props.theme.color.text.dark} !important;
   }
