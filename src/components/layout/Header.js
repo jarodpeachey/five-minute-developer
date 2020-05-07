@@ -60,10 +60,22 @@ const Header = ({ siteTitle }) => {
       !window.location.pathname.includes('/signup') &&
       !window.location.pathname.includes('/login') ? (
         <>
-          <Wrapper id='header' open={open} scrolled={scrolled}>
+          <Wrapper
+            id='header'
+            open={open}
+            scrolled={scrolled}
+            isBlog={isBrowser() && window.location.pathname.includes('blog')}
+          >
             <div className='container'>
               <Flex>
-                <SiteTitle scrolled={scrolled}>5 Minute Dev</SiteTitle>
+                <SiteTitle
+                  isBlog={
+                    isBrowser() && window.location.pathname.includes('blog')
+                  }
+                  scrolled={scrolled}
+                >
+                  5 Minute Dev
+                </SiteTitle>
                 <Menu scrolled={scrolled} />
                 {/* <MobileMenu scrolled={scrolled} /> */}
                 <MobileMenuToggle
@@ -114,28 +126,41 @@ Header.defaultProps = {
 
 const Wrapper = styled.header`
   .container {
-    padding-top: ${(props) => (props.scrolled ? '18px' : '32px')};
-    padding-bottom: ${(props) => (props.scrolled ? '18px' : '32px')};
+    padding-top: ${(props) =>
+      props.isBlog ? '32px' : props.scrolled ? '18px' : '32px'};
+    padding-bottom: ${(props) =>
+      props.isBlog ? '32px' : props.scrolled ? '18px' : '32px'};
     transition: all 0.25s ease-in;
   }
   background: ${(props) =>
-    props.open ? 'white' : props.scrolled ? 'white' : 'transparent'};
-  color: ${(props) => (props.scrolled ? '' : 'white')} !important;
+    props.isBlog
+      ? 'transparent'
+      : props.open
+      ? 'white'
+      : props.scrolled
+      ? 'white'
+      : 'transparent'};
+  color: ${(props) =>
+    props.isBlog ? 'white' : props.scrolled ? '' : 'white'} !important;
   transition-duration: 0.25s;
   transition: all 0.25s ease-in;
   box-shadow: ${(props) =>
-    props.open
+    props.isBlog
+      ? 'none'
+      : props.open
       ? 'none'
       : props.scrolled
       ? `0 5px 60px -20px ${props.theme.color.primary.light}60`
       : ''};
   border-bottom: ${(props) =>
-    props.open
+    props.isBlog
+      ? 'none'
+      : props.open
       ? '2px solid #e8e8e8'
       : props.scrolled
       ? '2px solid #e8e8e8'
       : '2px solid transparent'};
-  position: fixed;
+  position: ${(props) => (props.isBlog ? 'absolute' : 'fixed')};
   left: 0;
   top: 0;
   right: 0;
@@ -156,7 +181,11 @@ const SiteTitle = styled.h1`
   text-transform: uppercase;
   font-size: 22px;
   color: ${(props) =>
-    props.scrolled ? props.theme.color.primary.main : 'white'} !important;
+    props.isBlog
+      ? 'white'
+      : props.scrolled
+      ? props.theme.color.primary.main
+      : 'white'} !important;
 
   @media (min-width: 769px) {
     font-size: 26px;

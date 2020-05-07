@@ -1,16 +1,60 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link, useStaticQuery } from 'gatsby';
 import Section from '../layout/Section';
 import Row from '../grid/Row';
 import Spacer from '../Spacer';
 import { ThemeContext } from '../theme';
 import Button from '../Button';
-import { Link } from 'gatsby';
 import Posts from '../Posts';
 
 const RecentPostsSection = ({ data }) => {
   const theme = useContext(ThemeContext);
+
+  const categories = useStaticQuery(graphql`
+    query {
+      allCosmicjsCategories {
+        edges {
+          node {
+            title
+            slug
+            metadata {
+              color
+            }
+          }
+        }
+      }
+      allCosmicjsPosts {
+        edges {
+          node {
+            title
+            content
+            metadata {
+              categories {
+                slug
+              }
+              description
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const includesCategory = (post, category) => {
+    let boolean = null;
+
+    post.metadata.categories &&
+      post.metadata.categories.forEach((postCategory) => {
+        if (postCategory.slug === category) {
+          console.log(`${postCategory.slug} matches ${category}`);
+          boolean = true;
+        }
+      });
+
+    return boolean;
+  };
 
   return (
     <Section
@@ -40,9 +84,60 @@ const RecentPostsSection = ({ data }) => {
     >
       <Title className='center'>Recent Posts</Title>
       {/* <PostsWrapper> */}
-      <Posts gray category='React' color='#61dafb' />
-      <Posts category='Gatsby' color='#663399' />
-      <Posts gray category='HTML/CSS' color='#F16529' />
+      {categories.allCosmicjsCategories &&
+        categories.allCosmicjsCategories.edges.length > 0 &&
+        categories.allCosmicjsCategories.edges.map(({ node }) => {
+          const posts = categories.allCosmicjsPosts.edges.filter((item) =>
+            includesCategory(item.node, node.slug)
+          );
+
+          if (posts) {
+            return (
+              <Posts
+                key={`${node.slug}-posts`}
+                posts={posts}
+                category={node.title}
+                color={
+                  (node.metadata &&
+                    node.metadata.color &&
+                    node.metadata.color) ||
+                  theme.color.primary.main
+                }
+              />
+            );
+          }
+
+          // posts &&
+          //   posts.map((itemTwo) => {
+          //     return (
+          //       <Posts
+          //         key={`${node.slug}-posts`}
+          //         posts={posts}
+          //         category={node.slug}
+          //         color={
+          //           (node.metadata &&
+          //             node.metadata.color &&
+          //             node.metadata.color) ||
+          //           theme.color.primary.main
+          //         }
+          //       />
+          //     );
+          //   });
+          // return (
+          // <Posts
+          //   key={`posts${node.slug}`}
+          //   gray
+          //   category={node.slug}
+          // color={
+          //   (node.metadata && node.metadata.color && node.metadata.color) ||
+          //   theme.color.primary.main
+          // }
+          // />
+          // );
+        })}
+
+      {/* <Posts category='Gatsby' color='#663399' />
+      <Posts gray category='HTML/CSS' color='#F16529' /> */}
       {/* </PostsWrapper> */}
     </Section>
   );

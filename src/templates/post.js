@@ -34,44 +34,20 @@ const PostTemplate = ({ data, pageContext, location }) => {
     <span>
       <FeaturedImageWrapper scroll={scroll} height={contentHeight} id='wrapper'>
         {/* <FeaturedImage src={post.metadata.hero.url} /> */}
-        <ImageOverlay scroll={scroll} />
+        <ImageOverlay height={contentHeight} scroll={scroll} />
         <Seperator scroll={scroll} />
-        <FeaturedImageContent id='content'>
+        <FeaturedImageContent
+          scroll={scroll}
+          height={contentHeight}
+          id='content'
+        >
           <div className='container'>
-            <PostTitle
-              style={
-                scroll > 390
-                  ? {
-                      // width: `100vw`,
-                      position: 'fixed',
-                      width: '100vw',
-                      maxWidth: '999999px',
-                      top: '104px',
-                      textAlign: 'center',
-                      left: -9,
-                      display: 'block',
-                      height: '273px',
-                      marginTop: `-${390 / 4 + 50}px`,
-                      paddingTop: '144px',
-                      backgroundColor: 'black',
-                      fontSize: `${Math.max(10, 48 - 0.05 * 390)}px`,
-                    }
-                  : {
-                      fontSize: `${
-                        scroll < 390
-                          ? Math.max(10, 48 - 0.05 * scroll)
-                          : Math.max(10, 48 - 0.05 * 390)
-                      }px`,
-                      marginTop: `-${scroll < 390 ? scroll / 4 : ''}px`,
-                      position: 'sticky',
-                      top: 0,
-                      maxWidth: 769,
-                    }
-              }
-              scroll={scroll}
-            >
+            <PostTitle height={contentHeight} scroll={scroll}>
               {post.title}
             </PostTitle>
+            <PostTitleTwo scroll={scroll}>
+              <span>{post.title}</span>
+            </PostTitleTwo>
             <PostInfo scroll={scroll}>
               <PostDate>12/27/2020</PostDate>
               <PostComments>0 comments</PostComments>
@@ -100,7 +76,7 @@ const PostTemplate = ({ data, pageContext, location }) => {
   opacity: 1;
   width: 100%;
   position: relative;
-  z-index: ${scroll > 390 ? 0 : 999} !important;
+  z-index: ${scroll > 140 ? 0 : 999} !important;
   // margin-top: 124px;
   display: block;
   .container {
@@ -108,19 +84,13 @@ const PostTemplate = ({ data, pageContext, location }) => {
   }
   ::before {
     position: absolute;
-    display: block;
+    display: ${scroll > 99999999 ? 'none' : 'block'};
     height: 100px;
     width: 100%;
     content: "";
     background: white;
     top: -100px;
     clip-path: ${theme.clip.top};
-    ${
-      scroll > 390 &&
-      css`
-        display: none !important;
-      `
-    }
   }
   position: relative;
   top: -94px;
@@ -165,8 +135,8 @@ const FeaturedImageWrapper = styled.div`
   overflow: hidden;
   left: 0;
   padding-bottom: 100px;
-  background: ${(props) => (props.scroll > 390 ? 'transparent' : '#000')};
-  z-index: ${(props) => (props.scroll > 390 ? '9999' : 'initial')};
+  background: #000;
+  // z-index: ${(props) => (props.scroll > 140 ? '9999' : 'initial')};
 `;
 
 const FeaturedImage = styled.img`
@@ -182,15 +152,17 @@ const FeaturedImage = styled.img`
 
 const Seperator = styled.div`
   ${(props) =>
-    props.scroll > 390 &&
+    props.scroll > 99999999 &&
     css`
       position: fixed !important;
       display: block !important;
       height: 100px !important;
       width: 100% !important;
       background: white !important;
-      clip-path: ${props.theme.clip.topArrow} !important;
-      top: 164px !important;
+      clip-path: ${props.scroll > 414 && props.scroll < 475
+        ? props.theme.clip.top
+        : props.theme.clip.topArrow} !important;
+      top: 78px !important;
       z-index: 999 !important;
       content: '';
     `}
@@ -200,7 +172,8 @@ const Indicator = styled.div`
   height: 3px;
   width: ${(props) => props.percent}%;
   z-index: 9999 !important;
-  display: ${(props) => (props.scroll > 390 ? 'block' : 'none')};
+  display: ${(props) => (props.scroll > 140 ? 'block' : 'none')};
+  display: none;
   position: fixed;
   top: calc(164px + calc(100px * 0.62));
   left: 0;
@@ -211,8 +184,8 @@ const Indicator = styled.div`
 const SeperatorTwo = styled.div``;
 
 const FeaturedImageContent = styled.div`
-  position: fixed;
-  top: 0;
+  // position: fixed;
+  // top: 0;
   height: auto;
   width: 100%;
   margin: 0 auto;
@@ -229,6 +202,13 @@ const FeaturedImageContent = styled.div`
   //   position: relative;
   //   // left: -50%;
   // }
+  transition: 1s opacity ease-out !important;
+  small,
+  a {
+    opacity: ${(props) =>
+      props.scroll > props.height - 500 ? 0 : 1} !important;
+    transition: 1s opacity ease-out !important;
+  }
 `;
 
 const PostTitle = styled.h1`
@@ -237,6 +217,34 @@ const PostTitle = styled.h1`
   font-family: Montserrat;
   font-family: Roboto Mono !important;
   margin: 0 auto;
+  font-size: 48px;
+  max-width: 769px;
+  transition: opacity 2s ease-out;
+  opacity: ${(props) => (props.scroll > props.height - 500 ? 0 : 1)} !important;
+`;
+
+const PostTitleTwo = styled.h1`
+  font-size: 22px;
+  opacity: ${(props) => (props.scroll > 250 ? 1 : 0)};
+  transition: .5s;
+  background-filter: blur(200px);
+  top: 0px;
+  position: fixed;
+  width: 100%;
+  left: 0px;
+  span {
+    opacity: ${(props) => (props.scroll > 380 ? 1 : 0)};
+    transition: ${(props) =>
+      props.scroll > 380
+        ? 'opacity 1s ease-out'
+        : 'opacity .5s ease-out'} !important;
+    color: white !important;
+  }
+  height: 80px;
+  z-index: 9999;
+  margin-top: 0px;
+  padding-top: 25px;
+  background: black;
 `;
 
 const ImageOverlay = styled.div`
@@ -249,14 +257,7 @@ const ImageOverlay = styled.div`
   left: 50%;
   height: 100%;
   width: 100%;
-  ${(props) =>
-    props.scroll > 390 &&
-    css`
-      position: fixed !important;
-      height: 220px !important;
-      overflow: hidden;
-      z-index: -1;
-    `}
+  position: absolute;
   ::after {
     display: block;
     content: '';
@@ -271,13 +272,8 @@ const ImageOverlay = styled.div`
       rgba(0, 0, 0, 0.9542191876750701) 49%,
       rgba(0, 0, 0, 1) 65%
     );
-    top: calc(-100%);
+    top: -100%;
     height: 100%;
-    ${(props) =>
-      props.scroll > 390 &&
-      css`
-        z-index: 0 !important;
-      `}
   }
   ::before {
     display: block;
@@ -288,13 +284,9 @@ const ImageOverlay = styled.div`
     height: 100%;
     background: url(https://cdn.auth0.com/blog/illustrations/gatsbyjs.png);
     background-size: cover;
-    ${(props) =>
-      props.scroll > 390 &&
-      css`
-        position: relative;
-        z-index: -1 !important;
-        max-height: 263px !important;
-      `}
+    transition: 1s opacity ease-out;
+    opacity: ${(props) =>
+      props.scroll > props.height - 300 ? 0 : 1} !important;
   }
 `;
 
@@ -306,7 +298,7 @@ const PostInfo = styled.div`
   max-width: 769px;
   margin: 0 auto;
   padding-left: 12px;
-  display: ${(props) => (props.scroll > 390 ? 'none' : 'flex')} !important;
+  // display: ${(props) => (props.scroll > 140 ? 'none' : 'flex')} !important;
 `;
 
 const PostDate = styled.small`
@@ -333,7 +325,7 @@ const PostComments = styled.small`
 `;
 
 const Categories = styled.div`
-  display: ${(props) => (props.scroll > 390 ? 'none' : 'flex')} !important;
+  // display: ${(props) => (props.scroll > 140 ? 'none' : 'flex')} !important;
   display: flex;
   align-items: center;
   justify-content: center;

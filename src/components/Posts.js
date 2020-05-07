@@ -1,63 +1,48 @@
 import React from 'react';
 import styled from 'styled-components';
 import Row from './grid/Row';
-import { Link } from 'gatsby';
+import { Link, useStaticQuery } from 'gatsby';
 import Section from './layout/Section';
+import ReactMarkdown from 'react-markdown';
+import { shortenText } from '../utils/shortenText';
 
-const Posts = ({ category, color, gray }) => {
+const Posts = ({ category, color, gray, posts }) => {
+  console.log(posts);
+
   return (
     <Section background={gray ? '#f7f7f7' : 'white'} verticalPadding>
       <CategoryTitle color={color}>{category}</CategoryTitle>
       <Row spacing={[24]} breakpoints={[576, 769]}>
-        <div widths={[6, 4]}>
-          <Post color={color} gray={gray}>
-            <PostTitle color={color}>Using React Hooks With Gatsby</PostTitle>
-            <PostExcerpt>
-              React Hooks and Gatsby are two powerful tools, and using them
-              together makes things a lot easier.
-            </PostExcerpt>
-          </Post>
-        </div>
-        <div widths={[6, 4]}>
-          <Post color={color} gray={gray}>
-            <PostTitle color={color}>Using React Hooks With Gatsby</PostTitle>
-            <PostExcerpt>
-              React Hooks and Gatsby are two powerful tools, and using them
-              together makes things a lot easier.
-            </PostExcerpt>
-          </Post>
-        </div>
-        <div widths={[6, 4]}>
-          <Post color={color} gray={gray}>
-            <PostTitle color={color}>Using React Hooks With Gatsby</PostTitle>
-            <PostExcerpt>
-              React Hooks and Gatsby are two powerful tools, and using them
-              together makes things a lot easier.
-            </PostExcerpt>
-          </Post>
-        </div>
-        <div widths={[6, 4]}>
-          <Post color={color} gray={gray}>
-            <PostTitle color={color}>Using React Hooks With Gatsby</PostTitle>
-            <PostExcerpt>
-              React Hooks and Gatsby are two powerful tools, and using them
-              together makes things a lot easier.
-            </PostExcerpt>
-          </Post>
-        </div>
-        <div widths={[6, 4]}>
-          <Post color={color} gray={gray}>
-            <PostTitle color={color}>Using React Hooks With Gatsby</PostTitle>
-            <PostExcerpt>
-              React Hooks and Gatsby are two powerful tools, and using them
-              together makes things a lot easier.
-            </PostExcerpt>
-          </Post>
-        </div>
+        {posts.map((post) => {
+          return (
+            <div key={`${post.node.title}-post`} widths={[6, 4]}>
+              <Post color={color} gray={gray}>
+                <PostTitle color={color}>{post.node.title}</PostTitle>
+                <PostExcerpt>
+                  {shortenText(post.node.metadata.description, 100)}
+                </PostExcerpt>
+              </Post>
+            </div>
+          );
+        })}
       </Row>
     </Section>
   );
 };
+
+export const PostsQuery = graphql`
+  query PostsByCategory($category: String!) {
+    posts: cosmicjsPosts(
+      metadata: { categories: { elemMatch: { slug: { eq: $category } } } }
+    ) {
+      title
+      published_at(formatString: "DD/MM/YYYY")
+      content
+      status
+      slug
+    }
+  }
+`;
 
 const CategoryTitle = styled.h2`
   margin: 0 auto !important;
