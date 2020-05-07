@@ -30,6 +30,7 @@ const RecentPostsSection = ({ data }) => {
           node {
             title
             content
+            slug
             metadata {
               categories {
                 slug

@@ -16,7 +16,7 @@ const Posts = ({ category, color, gray, posts }) => {
         {posts.map((post) => {
           return (
             <div key={`${post.node.title}-post`} widths={[6, 4]}>
-              <Post color={color} gray={gray}>
+              <Post to={`/blog/${post.node.slug}`} color={color} gray={gray}>
                 <PostTitle color={color}>{post.node.title}</PostTitle>
                 <PostExcerpt>
                   {shortenText(post.node.metadata.description, 100)}
