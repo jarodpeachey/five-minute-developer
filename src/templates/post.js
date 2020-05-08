@@ -2,12 +2,22 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, graphql } from 'gatsby';
 import ReactMarkdown from 'react-markdown';
 import styled, { css } from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Section from '../components/layout/Section';
 import profileImage from '../images/jarod_profile.png';
-
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faCheck,
+  faUser,
+  faCalendar,
+  faCommentAlt,
+} from '@fortawesome/free-solid-svg-icons';
 // import Bio from "../components/bio"
 import SEO from '../components/SEO';
 import { ThemeContext } from '../components/theme';
+import Row from '../components/grid/Row';
+
+library.add(faCheck, faUser, faCalendar, faCommentAlt);
 
 const PostTemplate = ({ data, pageContext, location }) => {
   const { post } = data;
@@ -48,12 +58,8 @@ const PostTemplate = ({ data, pageContext, location }) => {
             <PostTitleTwo height={contentHeight} scroll={scroll}>
               <span>{post.title}</span>
             </PostTitleTwo>
-            <PostInfo scroll={scroll}>
-              <PostDate>12/27/2020</PostDate>
-              <PostComments>0 comments</PostComments>
-            </PostInfo>
             {post.metadata.categories && post.metadata.categories.length > 0 && (
-              <Categories scroll={scroll}>
+              <Categories height={contentHeight} scroll={scroll}>
                 {post.metadata.categories.map((category) => {
                   return (
                     <Category
@@ -66,6 +72,35 @@ const PostTemplate = ({ data, pageContext, location }) => {
                 })}
               </Categories>
             )}
+            <InfoWrapper scroll={scroll} height={contentHeight}>
+              {post.metadata.author && post.metadata.author.title ? (
+                <div widths={[4]}>
+                  <Info scroll={scroll}>
+                    <FontAwesomeIcon icon='user' />
+                    <AuthorInfo>{post.metadata.author.title}</AuthorInfo>
+                  </Info>
+                </div>
+              ) : (
+                <div widths={[4]}>
+                  <Info scroll={scroll}>
+                    <FontAwesomeIcon icon='user' />
+                    <AuthorInfo>Jarod Peachey</AuthorInfo>
+                  </Info>
+                </div>
+              )}
+
+              <div widths={[4]}>
+                <Info scroll={scroll}>
+                  <FontAwesomeIcon icon='calendar' />
+                  12/27/2020
+                </Info>
+              </div>
+              <div widths={[4]}>
+                <Info scroll={scroll}>
+                  <FontAwesomeIcon icon='comment-alt' />0 comments
+                </Info>
+              </div>
+            </InfoWrapper>
           </div>
         </FeaturedImageContent>
       </FeaturedImageWrapper>
@@ -97,17 +132,6 @@ const PostTemplate = ({ data, pageContext, location }) => {
    padding-top: 112px;      `}
       >
         {/* <ReactMarkdown source={post.content} /> */}
-        {/* {post.metadata.author && post.metadata.author.title ? (
-          <AuthorBox>
-            <AuthorImage src={post.metadata.author.metadata.image.url} />
-            <AuthorName>{post.metadata.author.title}</AuthorName>
-          </AuthorBox>
-        ) : (
-          <AuthorBox>
-            <AuthorImage src='https://cdn.cosmicjs.com/434379b0-5f2e-11e8-b73f-cb1681c50ff2-skyline-new-york-empire-state-building-skyscraper-39695.jpeg?q=&auto=compress,enhance,format,redeye,' />
-            <AuthorName>Jarod Peachey</AuthorName>
-          </AuthorBox>
-        )} */}
         {post.metadata.markdown_content && (
           <div id='post-content'>
             <ReactMarkdown source={post.metadata.markdown_content} />
@@ -135,7 +159,7 @@ const FeaturedImageWrapper = styled.div`
   overflow: hidden;
   left: 0;
   padding-bottom: 100px;
-  background: ${props => props.theme.color.gray.eleven};
+  background: ${(props) => props.theme.color.gray.eleven};
   // z-index: ${(props) => (props.scroll > 140 ? '9999' : 'initial')};
 `;
 
@@ -168,21 +192,6 @@ const Seperator = styled.div`
     `}
 `;
 
-const Indicator = styled.div`
-  height: 3px;
-  width: ${(props) => props.percent}%;
-  z-index: 9999 !important;
-  display: ${(props) => (props.scroll > 140 ? 'block' : 'none')};
-  display: none;
-  position: fixed;
-  top: calc(164px + calc(100px * 0.62));
-  left: 0;
-  content: '';
-  background: ${(props) => props.theme.color.primary.main};
-`;
-
-const SeperatorTwo = styled.div``;
-
 const FeaturedImageContent = styled.div`
   // position: fixed;
   // top: 0;
@@ -206,12 +215,6 @@ const FeaturedImageContent = styled.div`
   //   // left: -50%;
   // }
   transition: 1s opacity ease-out !important;
-  small,
-  a {
-    opacity: ${(props) =>
-      props.scroll > props.height - 300 ? 0 : 1} !important;
-    transition: 1s opacity ease-out !important;
-  }
 `;
 
 const PostTitle = styled.h1`
@@ -250,7 +253,7 @@ const PostTitleTwo = styled.h1`
   z-index: 9999;
   margin-top: 0px;
   padding-top: 25px;
-  background: ${props => props.theme.color.gray.eleven};
+  background: ${(props) => props.theme.color.gray.eleven};
   padding-bottom: 12px;
   @media (max-width: 400px) {
     height: fit-content;
@@ -303,47 +306,15 @@ const ImageOverlay = styled.div`
   }
 `;
 
-const PostInfo = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: flex-start;
-  max-width: 769px;
-  margin: 0 auto;
-  padding-left: 12px;
-  // display: ${(props) => (props.scroll > 140 ? 'none' : 'flex')} !important;
-`;
-
-const PostDate = styled.small`
-  color: #ffffffcc !important;
-  margin-top: 24px;
-  padding-bottom: 8px;
-  position: relative;
-  // ::after {
-  //   display: block;
-  //   content: '';
-  //   width: 6px;
-  //   height: 6px;
-  //   position: absolute;
-  //   bottom: -3px;
-  //   right: calc(50% - 3px);
-  //   border-radius: 6px;
-  //   background: #ffffff90;
-  // }
-`;
-
-const PostComments = styled.small`
-  color: #ffffffcc !important;
-  padding-top: 8px;
-`;
-
 const Categories = styled.div`
   // display: ${(props) => (props.scroll > 140 ? 'none' : 'flex')} !important;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: auto;
-  margin-top: 64px;
+  margin-top: 24px;
+    transition: opacity 2s ease-out;
+  opacity: ${(props) => (props.scroll > props.height - 300 ? 0 : 1)} !important;
 `;
 
 const Category = styled(Link)`
@@ -364,29 +335,63 @@ const Category = styled(Link)`
   }
 `;
 
+const InfoWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 90px;
+  transition: opacity 2s ease-out;
+  opacity: ${(props) => (props.scroll > props.height - 300 ? 0 : 1)} !important;
+`;
+
+const Info = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: #ffffffcc !important;
+  margin: 0px 12px;
+  font-size: 14px;
+  // display: ${(props) => (props.scroll > 140 ? 'none' : 'flex')} !important;
+  svg {
+    margin-right: 8px;
+    color: #ffffff !important;
+  }
+`;
+
 const AuthorBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  position: relative;
-  top: -72px;
+  // padding: 16px;
+  // border: 1px solid white;
+  color: #ffffffcc !important;
+`;
+
+const AuthorInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  color: #ffffffcc !important;
 `;
 
 const AuthorImage = styled.img`
-  max-width: 75px;
+  max-width: 46px;
   height: auto;
-  border-radius: 75px;
+  border-radius: 46px;
   width: 100%;
-  height: 75px;
+  height: 46px;
+  margin-right: 12px;
   background: transparent;
   display: block;
-  margin-bottom: 16px;
-  box-shadow: 0 0 0 2px ${(props) => props.theme.color.primary.main};
+  box-shadow: 0 0 0 2px #ffffff;
+  color: #ffffffcc !important;
 `;
 
-const AuthorName = styled.h4`
+const AuthorName = styled.div`
   margin: 0;
+  font-size: 18px;
+  color: #ffffffcc !important;
 `;
 
 export default PostTemplate;

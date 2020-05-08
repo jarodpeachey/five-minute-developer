@@ -16,6 +16,7 @@ import {
   faDollarSign,
   faTimes,
   faCode,
+  faCheck,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   fab,
@@ -49,7 +50,8 @@ library.add(
   faReact,
   faCss3Alt,
   faHtml5,
-  faCode
+  faCode,
+  faCheck
 );
 
 const Layout = (props) => {

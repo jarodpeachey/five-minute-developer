@@ -13,6 +13,8 @@ const Row = ({
   demo,
   vertical,
   flexDirections,
+  centerY,
+  centerX,
 }) => {
   console.log(breakpoints[0]);
   return (
@@ -25,6 +27,8 @@ const Row = ({
       spacingY={typeof spacing[1] === 'number' ? spacing[1] : spacing[0]}
       vertical={vertical}
       flexDirections={flexDirections || null}
+      centerY={centerY}
+      centerX={centerX}
     >
       {React.Children.toArray(children).map((item) => {
         return item ? (
@@ -63,12 +67,13 @@ const Wrapper = styled.div`
     flex-direction: ${(props) =>
       props.flexDirections ? props.flexDirections[0] || 'row' : 'row'};
     display: flex;
-    justify-content: flex-start;
+    justify-content: ${props => props.centerX ? 'center' : 'flex-start'};
+    align-items: ${props => props.centerY ? 'center' : 'flex-start'};
     flex-wrap: wrap;
     margin: ${(props) =>
-      props.standardWidth ?
-        '0' :
-        `0 -${props.spacingX}px 0 -${props.spacingX}px`};
+      props.standardWidth
+        ? '0'
+        : `0 -${props.spacingX}px 0 -${props.spacingX}px`};
 
   ${(props) =>
     props.flexDirections &&
@@ -82,9 +87,9 @@ const Wrapper = styled.div`
     justify-content: flex-start;
     flex-wrap: wrap;
     margin: ${
-      props.standardWidth ?
-        '0' :
-        `0 -${props.spacingX}px 0 -${props.spacingX}px`
+      props.standardWidth
+        ? '0'
+        : `0 -${props.spacingX}px 0 -${props.spacingX}px`
     };
   `};
   
