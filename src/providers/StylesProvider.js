@@ -50,8 +50,31 @@ const GlobalStyle = createGlobalStyle`
   code, a {
     color: ${(props) => props.theme.color.text.paragraph} !important;
   }
+  pre, code {
+    overflow: auto;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  code {
+    color: ${(props) => props.theme.color.error} !important;
+    padding: 4px;
+    margin: 0 2px;
+    background: #f7f7f7
+  }
   pre {
-    overflow: scroll;
+    color: #ffffff;
+    border-radius: 5px;
+    background: linear-gradient(
+      to right bottom,
+      ${props => props.theme.color.gray.eleven},
+      ${props => props.theme.color.gray.nine}
+    );
+    padding: 12px;
+    font-family: 'Roboto Mono';
+    code {
+      background: transparent;
+      color: #ffffff !important;
+    }
   }
   strong {
     color: ${(props) => props.theme.color.text.dark} !important;

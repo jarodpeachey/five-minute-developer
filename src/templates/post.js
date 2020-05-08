@@ -45,7 +45,7 @@ const PostTemplate = ({ data, pageContext, location }) => {
             <PostTitle height={contentHeight} scroll={scroll}>
               {post.title}
             </PostTitle>
-            <PostTitleTwo scroll={scroll}>
+            <PostTitleTwo height={contentHeight} scroll={scroll}>
               <span>{post.title}</span>
             </PostTitleTwo>
             <PostInfo scroll={scroll}>
@@ -135,7 +135,7 @@ const FeaturedImageWrapper = styled.div`
   overflow: hidden;
   left: 0;
   padding-bottom: 100px;
-  background: #000;
+  background: ${props => props.theme.color.gray.eleven};
   // z-index: ${(props) => (props.scroll > 140 ? '9999' : 'initial')};
 `;
 
@@ -195,7 +195,7 @@ const FeaturedImageContent = styled.div`
   justify-content: center;
   text-align: center;
   padding: 200px 0 64px;
-  @media(max-width: 400px) {
+  @media (max-width: 400px) {
     padding: 164px 0 64px;
   }
   // background: black;
@@ -209,7 +209,7 @@ const FeaturedImageContent = styled.div`
   small,
   a {
     opacity: ${(props) =>
-      props.scroll > props.height - 500 ? 0 : 1} !important;
+      props.scroll > props.height - 300 ? 0 : 1} !important;
     transition: 1s opacity ease-out !important;
   }
 `;
@@ -226,22 +226,22 @@ const PostTitle = styled.h1`
     font-size: 38px;
   }
   transition: opacity 2s ease-out;
-  opacity: ${(props) => (props.scroll > props.height - 500 ? 0 : 1)} !important;
+  opacity: ${(props) => (props.scroll > props.height - 300 ? 0 : 1)} !important;
 `;
 
 const PostTitleTwo = styled.h1`
   font-size: 22px;
-  opacity: ${(props) => (props.scroll > 250 ? 1 : 0)};
-  transition: .5s;
+  opacity: ${(props) => (props.scroll > props.height - 300 ? 1 : 0)};
+  transition: 0.5s;
   background-filter: blur(200px);
   top: 0px;
   position: fixed;
   width: 100%;
   left: 0px;
   span {
-    opacity: ${(props) => (props.scroll > 380 ? 1 : 0)};
+    opacity: ${(props) => (props.scroll > props.height - 300 ? 1 : 0)};
     transition: ${(props) =>
-      props.scroll > 380
+      props.scroll > 480
         ? 'opacity 1s ease-out'
         : 'opacity .5s ease-out'} !important;
     color: white !important;
@@ -250,7 +250,7 @@ const PostTitleTwo = styled.h1`
   z-index: 9999;
   margin-top: 0px;
   padding-top: 25px;
-  background: black;
+  background: ${props => props.theme.color.gray.eleven};
   padding-bottom: 12px;
   @media (max-width: 400px) {
     height: fit-content;
@@ -279,11 +279,11 @@ const ImageOverlay = styled.div`
     width: 100%;
     background: radial-gradient(
       circle,
-      rgba(0, 0, 0, 0.6292892156862745) 0%,
-      rgba(0, 0, 0, 0.7329306722689075) 9%,
-      rgba(0, 0, 0, 0.8421743697478992) 23%,
-      rgba(0, 0, 0, 0.9542191876750701) 49%,
-      rgba(0, 0, 0, 1) 65%
+      rgba(19, 18, 17, 0.6292892156862745) 0%,
+      rgba(19, 18, 17, 0.7329306722689075) 9%,
+      rgba(19, 18, 17, 0.8421743697478992) 23%,
+      rgba(19, 18, 17, 0.9542191876750701) 49%,
+      rgba(19, 18, 17, 1) 65%
     );
     top: -100%;
     height: 100%;

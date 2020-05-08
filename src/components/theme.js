@@ -6,16 +6,16 @@ export const theme = {
     success: '#00ab66',
     error: '#ff6347',
     text: {
-      paragraph: '#636d72',
-      heading: '#2e3c42',
+      paragraph: '#65615c',
+      heading: '#2e2c2a',
       dark: '#0e1e24',
     },
     primary: {
       lighter: '#ffeb8c',
       light: '#f4d86a',
       main: '#F16529',
-      dark: '#e8c547',
-      darker: '#c7a62f',
+      dark: '#cb501b',
+      darker: '#1B1513',
     },
     secondary: {
       light: '#4ecdc4',
@@ -25,7 +25,15 @@ export const theme = {
     gray: {
       one: '#f7f7f7',
       two: '#f3f3f3',
-      three: '#e9e9e9',
+      three: '#e8e2dc',
+      four: '#d3cac1',
+      five: '#b8b0a8',
+      six: '#9c958f',
+      seven: '#817b76',
+      eight: '#65615c',
+      nine: '#4a4743',
+      ten: '#2e2c2a',
+      eleven: '#131211',
     },
   },
   clip: {
