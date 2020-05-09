@@ -7,14 +7,15 @@ export const theme = {
     error: '#ff6347',
     text: {
       paragraph: '#65615c',
+      light: '#ffffffcc',
       heading: '#2e2c2a',
       dark: '#0e1e24',
     },
     primary: {
-      lighter: '#ffeb8c',
-      light: '#f4d86a',
+      lighter: '#f4d86a',
+      light: '#f39f4a',
       main: '#F16529',
-      dark: '#cb501b',
+      dark: '#d24b11',
       darker: '#1B1513',
     },
     secondary: {

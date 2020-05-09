@@ -27,7 +27,7 @@ const Section = ({
       verticalPadding={verticalPadding}
       color={
         dark
-          ? theme.color.primary.backgroundDark
+          ? theme.color.gray.eleven
           : light
           ? theme.color.primary.backgroundLight
           : background || 'transparent'
@@ -54,8 +54,13 @@ const SubTitle = styled.p`
 const StyledSection = styled.section`
   text-align: ${(props) => (props.center ? 'center' : 'inherit')};
   background: ${(props) => props.color};
-  padding-top: ${props => props.verticalPadding ? '60px' : null} !important;
-  padding-bottom: ${props => props.verticalPadding ? '60px' : null} !important;
+  padding-top: ${(props) => (props.verticalPadding ? '60px' : null)} !important;
+  padding-bottom: ${(props) =>
+    props.verticalPadding ? '60px' : null} !important;
+  * {
+    color: ${(props) =>
+      props.dark ? 'white' : null} !important;
+  }
   ${(props) =>
     props.fullHeight &&
     css`

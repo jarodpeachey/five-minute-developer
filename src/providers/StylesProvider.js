@@ -45,10 +45,38 @@ const GlobalStyle = createGlobalStyle`
   height: auto !important;
   display: inline-block !important;
   padding-right: ${(props) => props.width}px !important;
+  p, ul, li, span {
+    font-family: 'Heebo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+  }
   p,
   small,
   code, a {
-    color: ${(props) => props.theme.color.text.paragraph} !important;
+    color: ${(props) => props.theme.color.text.paragraph};
+  }
+  a {
+    background-color: ${(props) => props.theme.color.primary.main};
+    background-image: -webkit-linear-gradient(left, ${(props) =>
+      props.theme.color.primary.dark} 0%, ${(props) =>
+  props.theme.color.primary.light} 50%, transparent 50%);
+    background-position: 0 0;
+    background-size: 200% 200%;
+    color: transparent;
+    -webkit-transition: .1s .2s;
+    -webkit-background-clip: text;
+  }
+  a:hover {
+    background-position: 0 0;
+    color: transparent;
+    transition: .4s 0;
+  }
+  a.no-decoration {
+    background-color: transparent;
+    background-image: none;
+    color: inherit;
+  }
+  .light {
+    color: ${(props) => props.theme.color.text.light} !important;
   }
   pre, code {
     overflow: auto;
@@ -66,8 +94,8 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 5px;
     background: linear-gradient(
       to right bottom,
-      ${props => props.theme.color.gray.eleven},
-      ${props => props.theme.color.gray.nine}
+      ${(props) => props.theme.color.gray.eleven},
+      ${(props) => props.theme.color.gray.nine}
     );
     padding: 12px;
     font-family: 'Roboto Mono';

@@ -134,7 +134,7 @@ const Wrapper = styled.header`
   }
   background: ${(props) =>
     props.isBlog
-      ? 'transparent'
+      ? '#ffffff05'
       : props.open
       ? 'white'
       : props.scrolled
@@ -142,6 +142,10 @@ const Wrapper = styled.header`
       : 'transparent'};
   color: ${(props) =>
     props.isBlog ? 'white' : props.scrolled ? '' : 'white'} !important;
+  a {
+    color: ${(props) =>
+      props.isBlog ? 'white' : props.scrolled ? '' : 'white'} !important;
+  }
   transition-duration: 0.25s;
   transition: all 0.25s ease-in;
   box-shadow: ${(props) =>

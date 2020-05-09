@@ -16,7 +16,7 @@ exports.createPages = async ({ graphql, actions }) => {
               }
               author {
                 metadata {
-                  bio
+                  description
                   email
                   github
                   twitter

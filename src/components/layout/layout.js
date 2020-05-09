@@ -17,6 +17,7 @@ import {
   faTimes,
   faCode,
   faCheck,
+  faGlobe,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   fab,
@@ -26,12 +27,14 @@ import {
   faCss3,
   faHtml5,
   faCss3Alt,
+  faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
 import Footer from './Footer';
 import Header from './Header';
 import { AppContext } from '../../providers/AppProvider';
 import { pathnameIncludes } from '../../utils/pathnameIncludes';
 import Notification from '../Notification';
+import { isBrowser } from '../../utils/isBrowser';
 
 library.add(
   faBars,
@@ -51,7 +54,9 @@ library.add(
   faCss3Alt,
   faHtml5,
   faCode,
-  faCheck
+  faCheck,
+  faTwitter,
+  faGlobe
 );
 
 const Layout = (props) => {
@@ -69,7 +74,7 @@ const Layout = (props) => {
         <ContentWrapper />
       )}
       {props.children}
-      <Footer />
+      {isBrowser() && !window.location.pathname.includes('blog/') && <Footer />}
       {notificationMessage && (
         <Notification message={notificationMessage} type={notificationType} />
       )}

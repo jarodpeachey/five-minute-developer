@@ -3,21 +3,21 @@ import { Link, graphql } from 'gatsby';
 import ReactMarkdown from 'react-markdown';
 import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Section from '../components/layout/Section';
-import profileImage from '../images/jarod_profile.png';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faCheck,
   faUser,
   faCalendar,
   faCommentAlt,
+  faArrowUp,
 } from '@fortawesome/free-solid-svg-icons';
-// import Bio from "../components/bio"
-import SEO from '../components/SEO';
+import Section from '../components/layout/Section';
 import { ThemeContext } from '../components/theme';
-import Row from '../components/grid/Row';
+import Line from '../components/Line';
+import Author from '../components/post/Author';
+import Spacer from '../components/Spacer';
 
-library.add(faCheck, faUser, faCalendar, faCommentAlt);
+library.add(faCheck, faUser, faCalendar, faCommentAlt, faArrowUp);
 
 const PostTemplate = ({ data, pageContext, location }) => {
   const { post } = data;
@@ -25,11 +25,15 @@ const PostTemplate = ({ data, pageContext, location }) => {
   const [heroHeight, setHeroHeight] = useState(0);
   const [contentHeight, setContentHeight] = useState(0);
   const [scroll, setScroll] = useState(0);
-  const [percent, setPercent] = useState(0);
+  const [transition, setTransition] = useState(false);
 
   useEffect(() => {
     setHeroHeight(document.getElementById('wrapper').clientHeight);
     setContentHeight(document.getElementById('content').clientHeight);
+
+    setTimeout(() => {
+      setTransition(true);
+    }, 1000);
   }, []);
 
   useEffect(() => {
@@ -42,27 +46,50 @@ const PostTemplate = ({ data, pageContext, location }) => {
 
   return (
     <span>
-      <FeaturedImageWrapper scroll={scroll} height={contentHeight} id='wrapper'>
+      <FeaturedImageWrapper
+        scroll={scroll}
+        transition={transition}
+        height={contentHeight}
+        id='wrapper'
+      >
         {/* <FeaturedImage src={post.metadata.hero.url} /> */}
-        <ImageOverlay height={contentHeight} scroll={scroll} />
-        <Seperator scroll={scroll} />
+        <ImageOverlay
+          height={contentHeight}
+          scroll={scroll}
+          transition={transition}
+        />
+        <Seperator scroll={scroll} transition={transition} />
         <FeaturedImageContent
           scroll={scroll}
+          transition={transition}
           height={contentHeight}
           id='content'
         >
           <div className='container'>
-            <PostTitle height={contentHeight} scroll={scroll}>
+            <PostTitle
+              height={contentHeight}
+              scroll={scroll}
+              transition={transition}
+            >
               {post.title}
             </PostTitle>
-            <PostTitleTwo height={contentHeight} scroll={scroll}>
+            <PostTitleTwo
+              height={contentHeight}
+              scroll={scroll}
+              transition={transition}
+            >
               <span>{post.title}</span>
             </PostTitleTwo>
             {post.metadata.categories && post.metadata.categories.length > 0 && (
-              <Categories height={contentHeight} scroll={scroll}>
+              <Categories
+                height={contentHeight}
+                scroll={scroll}
+                transition={transition}
+              >
                 {post.metadata.categories.map((category) => {
                   return (
                     <Category
+                      className='no-decoration'
                       key={`category-${category.slug}`}
                       to={`/categories/${category.slug}`}
                     >
@@ -72,17 +99,21 @@ const PostTemplate = ({ data, pageContext, location }) => {
                 })}
               </Categories>
             )}
-            <InfoWrapper scroll={scroll} height={contentHeight}>
+            <InfoWrapper
+              scroll={scroll}
+              transition={transition}
+              height={contentHeight}
+            >
               {post.metadata.author && post.metadata.author.title ? (
                 <div widths={[4]}>
-                  <Info scroll={scroll}>
+                  <Info scroll={scroll} transition={transition}>
                     <FontAwesomeIcon icon='user' />
                     <AuthorInfo>{post.metadata.author.title}</AuthorInfo>
                   </Info>
                 </div>
               ) : (
                 <div widths={[4]}>
-                  <Info scroll={scroll}>
+                  <Info scroll={scroll} transition={transition}>
                     <FontAwesomeIcon icon='user' />
                     <AuthorInfo>Jarod Peachey</AuthorInfo>
                   </Info>
@@ -90,13 +121,13 @@ const PostTemplate = ({ data, pageContext, location }) => {
               )}
 
               <div widths={[4]}>
-                <Info scroll={scroll}>
+                <Info scroll={scroll} transition={transition}>
                   <FontAwesomeIcon icon='calendar' />
                   12/27/2020
                 </Info>
               </div>
               <div widths={[4]}>
-                <Info scroll={scroll}>
+                <Info scroll={scroll} transition={transition}>
                   <FontAwesomeIcon icon='comment-alt' />0 comments
                 </Info>
               </div>
@@ -115,7 +146,7 @@ const PostTemplate = ({ data, pageContext, location }) => {
   // margin-top: 124px;
   display: block;
   .container {
-    margin-top: -50px;
+    margin-top: -125px;
   }
   ::before {
     position: absolute;
@@ -127,11 +158,15 @@ const PostTemplate = ({ data, pageContext, location }) => {
     top: -100px;
     clip-path: ${theme.clip.top};
   }
+  .container {
+    position: relative;
+  }
   position: relative;
   top: -94px;
    padding-top: 112px;      `}
       >
-        {/* <ReactMarkdown source={post.content} /> */}
+        {/* <Row spacing={[24]} breakpoints={[769]}>
+          <div widths={[8]}> */}
         {post.metadata.markdown_content && (
           <div id='post-content'>
             <ReactMarkdown source={post.metadata.markdown_content} />
@@ -143,8 +178,27 @@ const PostTemplate = ({ data, pageContext, location }) => {
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         )}
-
+        <Spacer height={64} />
+        <Author author={post.metadata.author} />
+        {/* </div> */}
+        {/* <div widths={[4]}></div> */}
+        {/* </Row> */}
         {/* {post.content} */}
+      </Section>
+      <Section verticalPadding dark>
+        <div className='center'>
+          <h1 className='logo'>5 Minute Developer</h1>
+          <Line
+            height={2}
+            width='30%'
+            background={theme.color.primary.main}
+            margin={16}
+          />
+          <h3 className='light weight-regular p'>
+            Tips, tricks and tutorials to help you advance your career, five
+            minutes at a time.
+          </h3>
+        </div>
       </Section>
     </span>
   );
@@ -214,7 +268,8 @@ const FeaturedImageContent = styled.div`
   //   position: relative;
   //   // left: -50%;
   // }
-  transition: 1s opacity ease-out !important;
+  transition: ${(props) =>
+    props.transition ? '1s opacity ease-out' : null} !important;
 `;
 
 const PostTitle = styled.h1`
@@ -228,8 +283,50 @@ const PostTitle = styled.h1`
   @media (max-width: 400px) {
     font-size: 38px;
   }
-  transition: opacity 2s ease-out;
+  transition: ${(props) => (props.transition ? 'opacity 1s ease-out' : null)};
   opacity: ${(props) => (props.scroll > props.height - 300 ? 0 : 1)} !important;
+`;
+
+const BackToTopWrapper = styled.div`
+  background: white;
+  position: fixed;
+  bottom: 20px;
+  padding: 4px;
+  right: 20px;
+  border-radius: 5px;
+  z-index: 99;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+`;
+
+const BackToTopBackground = styled.div`
+  background: linear-gradient(
+    160deg,
+    ${(props) => props.theme.color.primary.main} 0%,
+    ${(props) => props.theme.color.primary.light} 100%
+  );
+  height: 48px;
+  width: 48px;
+  position: fixed;
+  bottom: 16px;
+  padding: 4px;
+  right: 16px;
+  border-radius: 8px;
+  z-index: 99;
+  cursor: pointer;
+`;
+
+const BackToTop = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size 26px;
+  svg {
+    color: ${(props) => props.theme.color.primary.main};
+  }
 `;
 
 const PostTitleTwo = styled.h1`
@@ -241,12 +338,15 @@ const PostTitleTwo = styled.h1`
   position: fixed;
   width: 100%;
   left: 0px;
+  clip-path: ${(props) => props.theme.clip.bottom};
   span {
     opacity: ${(props) => (props.scroll > props.height - 300 ? 1 : 0)};
     transition: ${(props) =>
-      props.scroll > 480
-        ? 'opacity 1s ease-out'
-        : 'opacity .5s ease-out'} !important;
+      props.transition
+        ? props.scroll > 480
+          ? 'opacity 1s ease-out'
+          : 'opacity .5s ease-out'
+        : null} !important;
     color: white !important;
   }
   height: fit-content;
@@ -300,7 +400,7 @@ const ImageOverlay = styled.div`
     height: 100%;
     background: url(https://cdn.auth0.com/blog/illustrations/gatsbyjs.png);
     background-size: cover;
-    transition: 1s opacity ease-out;
+    transition: ${(props) => (props.transition ? '1s opacity ease-out' : null)};
     opacity: ${(props) =>
       props.scroll > props.height - 300 ? 0 : 1} !important;
   }
@@ -313,7 +413,7 @@ const Categories = styled.div`
   justify-content: center;
   margin-right: auto;
   margin-top: 24px;
-    transition: opacity 2s ease-out;
+  transition: ${(props) => (props.transition ? 'opacity 1s ease-out' : null)};
   opacity: ${(props) => (props.scroll > props.height - 300 ? 0 : 1)} !important;
 `;
 
@@ -325,12 +425,13 @@ const Category = styled(Link)`
   border: 2px solid #ffffff90 !important;
   color: #ffffff90 !important;
   padding: 2px 16px;
+  margin: 0px 6px;
   font-size: 14px !important;
-  transition: all 0.2s ease-out !important;
+  transition: all 0.1s ease-out !important;
   :hover {
     color: #ffffff !important;
     background: #ffffff20 !important;
-    transition: all 0.2s ease-out !important;
+    transition: all 0.1s ease-out !important;
     border: 2px solid #ffffff !important;
   }
 `;
@@ -341,7 +442,7 @@ const InfoWrapper = styled.div`
   justify-content: center;
   position: relative;
   margin-top: 90px;
-  transition: opacity 2s ease-out;
+  transition: ${(props) => (props.transition ? 'opacity 1s ease-out' : null)};
   opacity: ${(props) => (props.scroll > props.height - 300 ? 0 : 1)} !important;
 `;
 
@@ -406,7 +507,7 @@ export const pageQuery = graphql`
         }
         author {
           metadata {
-            bio
+            description
             email
             github
             twitter
