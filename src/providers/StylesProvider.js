@@ -74,6 +74,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: transparent;
     background-image: none;
     color: inherit;
+    transition: none;
   }
   .light {
     color: ${(props) => props.theme.color.text.light} !important;

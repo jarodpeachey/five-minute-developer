@@ -44,7 +44,7 @@ export const PostsQuery = graphql`
   }
 `;
 
-const CategoryTitle = styled.h2`
+const CategoryTitle = styled.h3`
   margin: 0 auto !important;
   width: fit-content;
   margin-top: 64px;
@@ -107,12 +107,16 @@ const Post = styled(Link)`
 
 const PostTitle = styled.h3`
   margin-top: 0;
+  font-size: 17px;
   transition: 0.4s ease-out;
+  margin-bottom: 8px;
 `;
 
 const PostExcerpt = styled.p`
-  margin-bottom: 0;
+  margin: 0;
   transition: 0.4s ease-out;
+  font-size: 15px;
+  line-height: 1.4em;
 `;
 
 export default Posts;

@@ -87,7 +87,7 @@ const RecentPostsSection = ({ data }) => {
       {/* <PostsWrapper> */}
       {categories.allCosmicjsCategories &&
         categories.allCosmicjsCategories.edges.length > 0 &&
-        categories.allCosmicjsCategories.edges.map(({ node }) => {
+        categories.allCosmicjsCategories.edges.map(({ node }, index) => {
           const posts = categories.allCosmicjsPosts.edges.filter((item) =>
             includesCategory(item.node, node.slug)
           );
@@ -95,6 +95,7 @@ const RecentPostsSection = ({ data }) => {
           if (posts) {
             return (
               <Posts
+                gray={index === 0 || index === 2 || index === 4 || index === 6}
                 key={`${node.slug}-posts`}
                 posts={posts}
                 category={node.title}
