@@ -18,6 +18,7 @@ import {
   faCode,
   faCheck,
   faGlobe,
+  faCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   fab,
@@ -61,7 +62,8 @@ library.add(
   faGlobe,
   faReact,
   faJs,
-  faJsSquare
+  faJsSquare,
+  faCircle
 );
 
 const Layout = (props) => {

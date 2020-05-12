@@ -5,7 +5,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 // import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
-import { Link } from 'gatsby';
+import { Link, useStaticQuery } from 'gatsby';
 import Menu from './Menu';
 // import MobileMenu from './MobileMenu';
 import { AppContext } from '../../providers/AppProvider';
@@ -13,23 +13,16 @@ import Button from '../Button';
 import Spacer from '../Spacer';
 import Row from '../grid/Row';
 import { isBrowser } from '../../utils/isBrowser';
+import { ThemeContext } from '../theme';
 
 const Header = ({ siteTitle }) => {
   const { scrolled, setScrolled } = useContext(AppContext);
+  const theme = useContext(ThemeContext);
   const [open, setOpen] = useState(false);
   const [width, setWidth] = useState(0);
 
   useEffect(() => {
     window.addEventListener('scroll', onScroll);
-
-    const inner = document.getElementById('blur')
-      ? document.getElementById('blur').offsetWidth
-      : 0;
-    const outer = document.getElementById('mobile-menu')
-      ? document.getElementById('mobile-menu').offsetWidth
-      : 0;
-
-    setWidth(outer - inner);
 
     return () => {
       setWidth();
@@ -37,13 +30,23 @@ const Header = ({ siteTitle }) => {
     };
   });
 
-  const toggleFunction = () => {
-    if (open) {
-      document.getElementById('blur').classList.remove('blur');
-    } else {
-      document.getElementById('blur').classList.add('blur');
+  const categories = useStaticQuery(graphql`
+    query {
+      allCosmicjsCategories {
+        edges {
+          node {
+            title
+            slug
+            metadata {
+              color
+            }
+          }
+        }
+      }
     }
+  `);
 
+  const toggleFunction = () => {
     setOpen(!open);
   };
 
@@ -106,32 +109,24 @@ const Header = ({ siteTitle }) => {
             <div className='container'>
               <h3 className='m-none'>Categories</h3>
               <Spacer height={24} />
-              <Row spacing={[8]} breakpoints={[576]} flexDirections={['row']}>
-                <div widths={[6]}>
-                  <MobileMenuItem className='no-decoration'>
-                    <FontAwesomeIcon icon={['fab', 'react']} />
-                    <span>React</span>
-                  </MobileMenuItem>
-                </div>
-                <div widths={[6]}>
-                  <MobileMenuItem className='no-decoration'>
-                    <FontAwesomeIcon icon='code' />
-                    <span>HTML/CSS</span>
-                  </MobileMenuItem>
-                </div>
-                <div widths={[6]}>
-                  <MobileMenuItem className='no-decoration'>
-                    <FontAwesomeIcon icon='code' />
-                    <span>Gatsby</span>
-                  </MobileMenuItem>
-                </div>
-                <div widths={[6]}>
-                  <MobileMenuItem className='no-decoration'>
-                    <FontAwesomeIcon icon={['fab', 'js-square']} />
-                    <span>Javascript</span>
-                  </MobileMenuItem>
-                </div>
-              </Row>
+              {categories.allCosmicjsCategories &&
+                categories.allCosmicjsCategories.edges.length > 0 &&
+                categories.allCosmicjsCategories.edges.map(({ node }) => {
+                  return (
+                    <MobileMenuItem
+                      color={
+                        (node.metadata &&
+                          node.metadata.color &&
+                          node.metadata.color) ||
+                        theme.color.primary.main
+                      }
+                      className='no-decoration'
+                    >
+                      {/* <FontAwesomeIcon icon='code' /> */}
+                      <span>{node.title}</span>
+                    </MobileMenuItem>
+                  );
+                })}
             </div>
           </MobileMenu>
         </>
@@ -154,13 +149,11 @@ const Wrapper = styled.header`
       props.isBlog ? '32px' : props.scrolled ? '8px' : '32px'};
     padding-bottom: ${(props) =>
       props.isBlog ? '32px' : props.scrolled ? '8px' : '32px'};
-    transition: all 0.25s ease-in;
+    transition: all 0.2 ease-in;
   }
   background: ${(props) =>
     props.isBlog
       ? '#ffffff05'
-      : props.open
-      ? 'none'
       : props.scrolled
       ? `linear-gradient(to bottom right, ${props.theme.color.primary.main}, ${props.theme.color.primary.light})`
       : 'transparent'};
@@ -170,8 +163,8 @@ const Wrapper = styled.header`
     color: ${(props) =>
       props.isBlog ? 'white' : props.scrolled ? 'white' : 'white'} !important;
   }
-  transition-duration: 0.25s;
-  transition: all 0.25s ease-in;
+  transition-duration: 0.2;
+  transition: all 0.2 ease-in;
   box-shadow: ${(props) =>
     props.isBlog
       ? 'none'
@@ -196,7 +189,7 @@ const Flex = styled.div`
 const SiteTitle = styled.h1`
   margin: 0;
   margin-bottom: -1px;
-  transition: all 0.25s ease-in;
+  transition: all 0.2 ease-in;
   letter-spacing: 3px;
   text-transform: uppercase;
   display: flex;
@@ -231,7 +224,7 @@ const MobileMenuToggle = styled.div`
     display: block;
   }
   transform: rotate(0deg);
-  transition: all 0.25s ease-in;
+  transition: all 0.2 ease-in;
   cursor: pointer;
   margin-left: auto;
   position: ${(props) => (props.open ? 'relative' : 'static')};
@@ -247,7 +240,7 @@ const MobileMenuToggle = styled.div`
     left: 0;
     transform: rotate(0deg);
     transition: ${(props) =>
-      props.open ? 'all 0.25s ease-in' : 'all 0.25s ease-out'};
+      props.open ? 'all 0.2 ease-in' : 'all 0.2 ease-out'};
   }
 
   span:nth-child(1) {
@@ -273,7 +266,7 @@ const MobileMenuRotate = styled.div`
   height: 100%;
   width: 100%;
   transition: ${(props) =>
-    props.open ? 'all 0.25s ease-in-out' : 'all 0.25s ease-in-out'};
+    props.open ? 'all 0.2 ease-in-out' : 'all 0.2 ease-in-out'};
   transform: ${(props) => (props.open ? 'rotate(-45deg)' : 'none')};
 `;
 
@@ -292,15 +285,14 @@ const MobileMenu = styled.div`
   background: white;
   z-index: 999;
   width: 100%;
-  transition: ${(props) =>
-    props.open ? 'all 0.21s ease-out' : 'all 0.15s ease-out'};
+  transition: all 0.15s ease-out;
   box-shadow: none;
   transform: scale(${(props) => (props.open ? '1' : '0')});
   border-bottom: 1px solid #e8e8e8;
   border-radius: 10px;
   width: calc(90%);
-  // left: 5%;
   right: 24px;
+  width: calc(100% - 48px);
   height: fit-content
   .container {
     padding: 12px 10vw;
@@ -322,22 +314,34 @@ const MobileMenuItem = styled(Link)`
   text-decoration: none;
   transition-duration: 0.2s;
   display: flex;
+  position: relative;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   text-align: left;
+  ::after {
+    display: block;
+    position: absolute;
+    left: 16px;
+    bottom: 6px;
+    content: "";
+    width: 20%;
+    height: 2px;
+    // background: ${(props) => props.color};
+  }
   font-size: 16px;
   display: block;
   padding: 12px 16px;
   width: 100%;
+  margin: 0;
   border-radius: 5px;
   transition-duration: 0.2s;
   svg {
-    color: ${(props) => props.theme.color.primary.main};
     margin-right: 12px;
+    font-size: 18px;
   }
   :hover {
-    background: #f7f7f7;
+    background: ${(props) => props.theme.color.gray.two};
     transition-duration: 0.2s;
   }
 `;

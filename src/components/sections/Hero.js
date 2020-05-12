@@ -13,33 +13,26 @@ const Hero = ({ children }) => {
 
   return (
     <span>
-      <div id='blur'>
-        <MainWrapper>
-          <Background></Background>
-          <HeroContainer className='container'>
-            {/* <Categories>
+      <MainWrapper>
+        <Background></Background>
+        <HeroContainer className='container'>
+          {/* <Categories>
               <Category>HTML</Category>
               <Category>CSS</Category>
               <Category>React</Category>
               <Category>Gatsby</Category>
             </Categories> */}
-            <Title>
-              Grow your web developer skillset, 5 minutes at a time.
-            </Title>
-            {/* <SubTitle>
+          <Title>Grow your web developer skillset, 5 minutes at a time.</Title>
+          {/* <SubTitle>
               Tips, tricks and tutorials to help you advance your career, in
               bite-size chunks that you have time to read
             </SubTitle> */}
-            {/* <Button center secondary>
+          {/* <Button center secondary>
               Let's Go!
             </Button> */}
-          </HeroContainer>
-          {/* </BackgroundImage> */}
-        </MainWrapper>
-      </div>
-      {/* // ); */}
-      {/* // }} */}
-      {/* // /> */}
+        </HeroContainer>
+        {/* </BackgroundImage> */}
+      </MainWrapper>
     </span>
   );
 };
