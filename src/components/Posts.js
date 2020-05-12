@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Row from './grid/Row';
 import { Link, useStaticQuery } from 'gatsby';
+import Row from './grid/Row';
 import Section from './layout/Section';
-import ReactMarkdown from 'react-markdown';
 import { shortenText } from '../utils/shortenText';
 
 const Posts = ({ category, color, gray, posts }) => {
@@ -79,9 +78,9 @@ const Post = styled(Link)`
   display: block;
   transition: all 0.2s ease-out;
   box-shadow: ${(props) =>
-    !props.gray
-      ? `12px 12px 0px ${props.color}20, 0px -4px 0px #f7f7f7`
-      : `12px 12px 0px ${props.color}20`};
+    !props.gray ?
+      `12px 12px 0px ${props.color}20, 0px -4px 0px #f7f7f7` :
+      `12px 12px 0px ${props.color}20`};
   :hover {
     transition: 0.2s ease-out;
     box-shadow: 20px 20px 0px -3px ${(props) => props.color}20;

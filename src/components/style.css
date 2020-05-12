@@ -331,3 +331,51 @@ h6,
   display: block !important;
   width: fit-content !important;
 }
+
+.desktop,
+.tablet {
+  display: none !important;
+}
+
+@media (min-width: 769px) {
+  .tablet {
+    display: block !important;
+  }
+  .tablet.inline {
+    display: inline !important;
+  }
+  .mobile,
+  .desktop {
+    display: none !important;
+  }
+}
+
+@media (min-width: 960px) {
+  .desktop {
+    display: block !important;
+  }
+  .desktop.inline {
+    display: inline !important;
+  }
+  .mobile,
+  .tablet {
+    display: none !important;
+  }
+}
+
+.inline {
+  display: inline;
+}
+
+.block {
+  display: block;
+}
+
+.logo {
+  font-family: 'Raleway' !important;
+  font-weight: 700 !important;
+  letter-spacing: 0px !important;
+  position: relative;
+  top: -6px;
+  margin-right: 12px;
+}

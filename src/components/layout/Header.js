@@ -10,6 +10,7 @@ import Menu from './Menu';
 // import MobileMenu from './MobileMenu';
 import { AppContext } from '../../providers/AppProvider';
 import Button from '../Button';
+import Spacer from '../Spacer';
 import Row from '../grid/Row';
 import { isBrowser } from '../../utils/isBrowser';
 
@@ -74,7 +75,8 @@ const Header = ({ siteTitle }) => {
                   }
                   scrolled={scrolled}
                 >
-                  5 Minute Dev
+                  <span className='logo'>{'<5>'}</span>
+                  <span className='tablet inline'>Five Minute Developer</span>
                 </SiteTitle>
                 <Menu scrolled={scrolled} />
                 {/* <MobileMenu scrolled={scrolled} /> */}
@@ -99,13 +101,35 @@ const Header = ({ siteTitle }) => {
             id='mobile-menu'
             scrolled={scrolled}
             open={open}
+            className='container'
           >
             <div className='container'>
+              <h3 className='m-none'>Categories</h3>
+              <Spacer height={24} />
               <Row spacing={[8]} breakpoints={[576]} flexDirections={['row']}>
-                <div widths={[12]}>
-                  <MobileMenuItems open={open}>
-                    <MobileMenuItem to='/'>Home</MobileMenuItem>
-                  </MobileMenuItems>
+                <div widths={[6]}>
+                  <MobileMenuItem className='no-decoration'>
+                    <FontAwesomeIcon icon={['fab', 'react']} />
+                    <span>React</span>
+                  </MobileMenuItem>
+                </div>
+                <div widths={[6]}>
+                  <MobileMenuItem className='no-decoration'>
+                    <FontAwesomeIcon icon='code' />
+                    <span>HTML/CSS</span>
+                  </MobileMenuItem>
+                </div>
+                <div widths={[6]}>
+                  <MobileMenuItem className='no-decoration'>
+                    <FontAwesomeIcon icon='code' />
+                    <span>Gatsby</span>
+                  </MobileMenuItem>
+                </div>
+                <div widths={[6]}>
+                  <MobileMenuItem className='no-decoration'>
+                    <FontAwesomeIcon icon={['fab', 'js-square']} />
+                    <span>Javascript</span>
+                  </MobileMenuItem>
                 </div>
               </Row>
             </div>
@@ -127,24 +151,24 @@ Header.defaultProps = {
 const Wrapper = styled.header`
   .container {
     padding-top: ${(props) =>
-      props.isBlog ? '32px' : props.scrolled ? '18px' : '32px'};
+      props.isBlog ? '32px' : props.scrolled ? '8px' : '32px'};
     padding-bottom: ${(props) =>
-      props.isBlog ? '32px' : props.scrolled ? '18px' : '32px'};
+      props.isBlog ? '32px' : props.scrolled ? '8px' : '32px'};
     transition: all 0.25s ease-in;
   }
   background: ${(props) =>
     props.isBlog
       ? '#ffffff05'
       : props.open
-      ? 'white'
+      ? 'none'
       : props.scrolled
-      ? 'white'
+      ? `linear-gradient(to bottom right, ${props.theme.color.primary.main}, ${props.theme.color.primary.light})`
       : 'transparent'};
   color: ${(props) =>
-    props.isBlog ? 'white' : props.scrolled ? '' : 'white'} !important;
+    props.isBlog ? 'white' : props.scrolled ? 'white' : 'white'} !important;
   a {
     color: ${(props) =>
-      props.isBlog ? 'white' : props.scrolled ? '' : 'white'} !important;
+      props.isBlog ? 'white' : props.scrolled ? 'white' : 'white'} !important;
   }
   transition-duration: 0.25s;
   transition: all 0.25s ease-in;
@@ -156,14 +180,6 @@ const Wrapper = styled.header`
       : props.scrolled
       ? `0 5px 60px -20px ${props.theme.color.primary.light}60`
       : ''};
-  border-bottom: ${(props) =>
-    props.isBlog
-      ? 'none'
-      : props.open
-      ? '2px solid #e8e8e8'
-      : props.scrolled
-      ? '2px solid #e8e8e8'
-      : '2px solid transparent'};
   position: ${(props) => (props.isBlog ? 'absolute' : 'fixed')};
   left: 0;
   top: 0;
@@ -183,16 +199,18 @@ const SiteTitle = styled.h1`
   transition: all 0.25s ease-in;
   letter-spacing: 3px;
   text-transform: uppercase;
-  font-size: 22px;
+  display: flex;
+  align-items: center;
   color: ${(props) =>
-    props.isBlog
-      ? 'white'
-      : props.scrolled
-      ? props.theme.color.primary.main
-      : 'white'} !important;
-
+    props.isBlog ? 'white' : props.scrolled ? 'white' : 'white'} !important;
+  .logo {
+    font-size: 42px;
+  }
   @media (min-width: 769px) {
-    font-size: 26px;
+    font-size: 22px;
+    .logo {
+      font-size: 46px;
+    }
   }
   z-index: 999;
   svg {
@@ -223,7 +241,7 @@ const MobileMenuToggle = styled.div`
     position: absolute;
     height: 4px;
     width: 100%;
-    background: ${(props) => props.theme.color.text.heading};
+    background: white;
     border-radius: 9px;
     opacity: 1;
     left: 0;
@@ -268,16 +286,22 @@ const MobileMenu = styled.div`
   // display: ${(props) => (props.open ? 'block' : 'none')};
   position: fixed;
   overflow: hidden;
-  top: ${(props) => (props.open ? '0' : '-100%')};
-  margin-top: ${(props) => (props.scrolled ? '66px' : '94px')};
+  padding: 24px 0;
+  top: 0;
+  margin-top: ${(props) => (props.scrolled ? '64px' : '112px')};
   background: white;
   z-index: 999;
   width: 100%;
   transition: ${(props) =>
-    props.open ? 'all 0.25s ease-out' : 'all 0.6s ease-out'};
+    props.open ? 'all 0.21s ease-out' : 'all 0.15s ease-out'};
   box-shadow: none;
+  transform: scale(${(props) => (props.open ? '1' : '0')});
   border-bottom: 1px solid #e8e8e8;
-
+  border-radius: 10px;
+  width: calc(90%);
+  // left: 5%;
+  right: 24px;
+  height: fit-content
   .container {
     padding: 12px 10vw;
   }
@@ -297,18 +321,21 @@ const MobileMenuItems = styled.div`
 const MobileMenuItem = styled(Link)`
   text-decoration: none;
   transition-duration: 0.2s;
-  color: #666 !important;
-  font-weight: bold;
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
   font-size: 16px;
-  border-bottom: 1px solid #e8e8e8;
   display: block;
-  padding: 16px 0;
+  padding: 12px 16px;
   width: 100%;
-  :last-child {
-    border: none;
-  }
+  border-radius: 5px;
   transition-duration: 0.2s;
+  svg {
+    color: ${(props) => props.theme.color.primary.main};
+    margin-right: 12px;
+  }
   :hover {
     background: #f7f7f7;
     transition-duration: 0.2s;

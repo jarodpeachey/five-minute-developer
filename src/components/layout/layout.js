@@ -28,6 +28,8 @@ import {
   faHtml5,
   faCss3Alt,
   faTwitter,
+  faJs,
+  faJsSquare,
 } from '@fortawesome/free-brands-svg-icons';
 import Footer from './Footer';
 import Header from './Header';
@@ -56,7 +58,10 @@ library.add(
   faCode,
   faCheck,
   faTwitter,
-  faGlobe
+  faGlobe,
+  faReact,
+  faJs,
+  faJsSquare
 );
 
 const Layout = (props) => {
