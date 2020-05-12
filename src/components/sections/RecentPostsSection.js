@@ -60,12 +60,19 @@ const RecentPostsSection = ({ data }) => {
   return (
     <Section
       noContainer
+      background={`
+      linear-gradient(
+          to bottom,
+          ${theme.color.gray.one},
+          ${theme.color.gray.one} 20%,
+          ${theme.color.gray.one}20
+        )
+      `}
       customStyles={`
         position: relative;
         padding-top: 0px;
         // margin-top: -120px;
         position: relative;
-        background: ${theme.color.gray.one};
         // padding-top: 76px;
         z-index: 999;
         .container {
@@ -95,7 +102,7 @@ const RecentPostsSection = ({ data }) => {
           if (posts) {
             return (
               <Posts
-                gray={index === 0 || index === 2 || index === 4 || index === 6}
+                // gray={index === 0 || index === 2 || index === 4 || index === 6}
                 key={`${node.slug}-posts`}
                 posts={posts}
                 category={node.title}

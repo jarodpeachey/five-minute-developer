@@ -10,7 +10,7 @@ const Posts = ({ category, color, gray, posts }) => {
   console.log(posts);
 
   return (
-    <Section background={gray ? '#f7f7f7' : 'white'} verticalPadding>
+    <Section background={gray ? '#f7f7f7' : 'transparent'} verticalPadding>
       <CategoryTitle color={color}>{category}</CategoryTitle>
       <Row spacing={[24]} breakpoints={[576, 769]}>
         {posts.map((post) => {
@@ -51,19 +51,19 @@ const CategoryTitle = styled.h3`
   position: relative;
   padding: 8px 0;
   margin-bottom: 32px !important;
-  color: white !important;
+  // color: white !important;
   z-index: 9999;
   display: block;
   ::after {
     content: '';
     background: ${(props) => props.color} !important;
-    width: 300px;
-    height: 100%;
+    width: 200px;
+    height: 3px;
     position: absolute;
-    left: calc(50% - 150px);
-    top: 0;
+    left: calc(50% - 100px);
+    bottom: -12px;
     z-index: -1;
-    box-shadow: 8px 8px 0 0 ${(props) => props.color}20;
+    box-shadow: 0px 8px 0 0px ${(props) => props.color}20;
   }
 `;
 
@@ -107,7 +107,7 @@ const Post = styled(Link)`
 
 const PostTitle = styled.h3`
   margin-top: 0;
-  font-size: 17px;
+  font-size: 16px;
   transition: 0.4s ease-out;
   margin-bottom: 8px;
 `;
@@ -115,7 +115,7 @@ const PostTitle = styled.h3`
 const PostExcerpt = styled.p`
   margin: 0;
   transition: 0.4s ease-out;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.4em;
 `;
 
