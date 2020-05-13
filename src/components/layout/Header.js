@@ -272,6 +272,7 @@ const MobileMenuRotate = styled.div`
 
 const MobileMenu = styled.div`
   display: none;
+  z-index: 9999999;
   @media (max-width: 769px) {
     display: block;
   }
@@ -283,7 +284,6 @@ const MobileMenu = styled.div`
   top: 0;
   margin-top: ${(props) => (props.scrolled ? '64px' : '112px')};
   background: white;
-  z-index: 999;
   width: 100%;
   transition: all 0.15s ease-out;
   box-shadow: none;

@@ -16,6 +16,7 @@ import { ThemeContext } from '../components/theme';
 import Line from '../components/Line';
 import Author from '../components/post/Author';
 import Spacer from '../components/Spacer';
+import Layout from '../components/layout/layout';
 
 library.add(faCheck, faUser, faCalendar, faCommentAlt, faArrowUp);
 
@@ -45,7 +46,7 @@ const PostTemplate = ({ data, pageContext, location }) => {
   };
 
   return (
-    <span>
+    <Layout>
       <FeaturedImageWrapper
         scroll={scroll}
         transition={transition}
@@ -57,6 +58,7 @@ const PostTemplate = ({ data, pageContext, location }) => {
           height={contentHeight}
           scroll={scroll}
           transition={transition}
+          image={post.metadata.hero.url}
         />
         <Seperator scroll={scroll} transition={transition} />
         <FeaturedImageContent
@@ -200,7 +202,7 @@ const PostTemplate = ({ data, pageContext, location }) => {
           </h3>
         </div>
       </Section>
-    </span>
+    </Layout>
   );
 };
 
@@ -398,7 +400,7 @@ const ImageOverlay = styled.div`
     left: -50%;
     width: auto;
     height: 100%;
-    background: url(https://cdn.auth0.com/blog/illustrations/gatsbyjs.png);
+    background: url(${(props) => props.image});
     background-size: cover;
     transition: ${(props) => (props.transition ? '1s opacity ease-out' : null)};
     opacity: ${(props) =>

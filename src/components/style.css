@@ -99,17 +99,14 @@ button a:hover {
 }
 
 body {
-  width: 100%;
-  overflow-x: auto;
+  /* width: 100%; */
   margin: 0;
   padding: 0;
-  overflow-y: auto;
 }
 
 html {
   box-sizing: border-box;
-  /* overflow-y: hidden; */
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
   width: 100%;
 }
 
@@ -183,7 +180,6 @@ html,
 body {
   color: #3a3e44;
   font-family: 'Roboto Mono', sans-serif;
-  overflow-x: hidden;
 }
 
 input,

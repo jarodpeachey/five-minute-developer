@@ -41,7 +41,6 @@ export const StylesProvider = (props) => {
 
 const GlobalStyle = createGlobalStyle`
   width: 100vw !important;
-  overflow: hidden !important;
   height: auto !important;
   display: inline-block !important;
   padding-right: ${(props) => props.width}px !important;
@@ -104,30 +103,6 @@ const GlobalStyle = createGlobalStyle`
       background: transparent;
       color: #ffffff !important;
     }
-  }
-  strong {
-    color: ${(props) => props.theme.color.text.dark} !important;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: ${(props) => props.theme.color.text.heading} !important;
-  }
-`;
-
-const StyleWrapper = styled.div`
-  width: 100vw !important;
-  overflow: hidden !important;
-  height: auto !important;
-  display: inline-block !important;
-  padding-right: ${(props) => props.width}px !important;
-  p,
-  small,
-  code {
-    color: ${(props) => props.theme.color.text.paragraph} !important;
   }
   strong {
     color: ${(props) => props.theme.color.text.dark} !important;
