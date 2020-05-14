@@ -39,7 +39,11 @@ const PostTemplate = ({ data, pageContext, location }) => {
       <Section verticalPadding>
         <h1>Latest Posts</h1>
         <Posts
-          color={category.metadata.color || theme.color.primary.main}
+          color={
+            category.metadata && category.metadata.color
+              ? category.metadata.color
+              : theme.color.primary.main
+          }
           list
           posts={posts.edges}
         />
