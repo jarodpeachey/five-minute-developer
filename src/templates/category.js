@@ -27,7 +27,12 @@ const PostTemplate = ({ data, pageContext, location }) => {
 
   return (
     <Layout>
-      <HeroWrapper color={category.metadata.color || theme.color.primary.main}>
+      <HeroWrapper
+        color={
+          (category.metadata.color && category.metadata.color) ||
+          theme.color.primary.main
+        }
+      >
         <HeroTitle>{category.title}</HeroTitle>
       </HeroWrapper>
       <Section verticalPadding>
