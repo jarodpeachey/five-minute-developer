@@ -16,7 +16,7 @@ import { ThemeContext } from '../components/theme';
 import Line from '../components/Line';
 import Author from '../components/post/Author';
 import Spacer from '../components/Spacer';
-import Layout from '../components/layout/layout';
+import Layout from '../components/layout/Layout';
 
 library.add(faCheck, faUser, faCalendar, faCommentAlt, faArrowUp);
 

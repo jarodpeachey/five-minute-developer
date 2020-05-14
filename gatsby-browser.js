@@ -1,6 +1,6 @@
 import React from "react";
 import { StylesProvider } from "./src/providers/StylesProvider";
-import Layout from "./src/components/layout/layout";
+import Layout from "./src/components/layout/Layout";
 // import { FirebaseProvider } from './src/providers/FirebaseProvider';
 import { AppProvider } from "./src/providers/AppProvider";
 
