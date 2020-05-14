@@ -93,7 +93,7 @@ const PostTemplate = ({ data, pageContext, location }) => {
                     <Category
                       className='no-decoration'
                       key={`category-${category.slug}`}
-                      to={`/categories/${category.slug}`}
+                      to={`/category/${category.slug}`}
                     >
                       {category.title}
                     </Category>

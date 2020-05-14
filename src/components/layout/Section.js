@@ -57,10 +57,6 @@ const StyledSection = styled.section`
   padding-top: ${(props) => (props.verticalPadding ? '60px' : null)} !important;
   padding-bottom: ${(props) =>
     props.verticalPadding ? '60px' : null} !important;
-  * {
-    color: ${(props) =>
-      props.dark ? 'white' : null} !important;
-  }
   ${(props) =>
     props.fullHeight &&
     css`

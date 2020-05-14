@@ -60,7 +60,7 @@ const GlobalStyle = createGlobalStyle`
   props.theme.color.primary.light} 50%, transparent 50%);
     background-position: 0 0;
     background-size: 200% 200%;
-    color: transparent;
+    // color: transparent;
     -webkit-transition: .1s .2s;
     -webkit-background-clip: text;
   }
@@ -74,6 +74,7 @@ const GlobalStyle = createGlobalStyle`
     background-image: none;
     color: inherit;
     transition: none;
+    text-decoration: none;
   }
   .light {
     color: ${(props) => props.theme.color.text.light} !important;

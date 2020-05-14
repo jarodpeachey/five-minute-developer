@@ -78,8 +78,12 @@ const Header = ({ siteTitle }) => {
                   }
                   scrolled={scrolled}
                 >
-                  <span className='logo'>{'<5>'}</span>
-                  <span className='tablet inline'>Five Minute Developer</span>
+                  <Link className='no-decoration' to='/'>
+                    <span className='logo'>{'<5>'}</span>
+                    <span className='desktop inline'>
+                      Five Minute Developer
+                    </span>
+                  </Link>
                 </SiteTitle>
                 <Menu scrolled={scrolled} />
                 {/* <MobileMenu scrolled={scrolled} /> */}
@@ -114,6 +118,7 @@ const Header = ({ siteTitle }) => {
                 categories.allCosmicjsCategories.edges.map(({ node }) => {
                   return (
                     <MobileMenuItem
+                      to={`/category/${node.slug}`}
                       color={
                         (node.metadata &&
                           node.metadata.color &&
@@ -276,6 +281,7 @@ const MobileMenu = styled.div`
   @media (max-width: 769px) {
     display: block;
   }
+  box-shadow: 2px 2px 30px -12px ${(props) => props.theme.color.gray.four};
   line-height: 1;
   // display: ${(props) => (props.open ? 'block' : 'none')};
   position: fixed;
@@ -286,7 +292,6 @@ const MobileMenu = styled.div`
   background: white;
   width: 100%;
   transition: all 0.15s ease-out;
-  box-shadow: none;
   transform: scale(${(props) => (props.open ? '1' : '0')});
   border-bottom: 1px solid #e8e8e8;
   border-radius: 10px;

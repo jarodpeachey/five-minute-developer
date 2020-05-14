@@ -15,7 +15,15 @@ const Footer = () => {
       {typeof window !== 'undefined' &&
       !window.location.pathname.includes('/signup') &&
       !window.location.pathname.includes('/login') ? (
-        <Section verticalPadding dark>
+        <Section
+          customStyles={`
+            h1, h2 {
+              color: white !important;
+            }
+          `}
+          verticalPadding
+          dark
+        >
           <div className='center'>
             <h1 className='logo'>5 Minute Developer</h1>
             <Line

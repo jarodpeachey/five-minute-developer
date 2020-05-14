@@ -67,13 +67,13 @@ const Wrapper = styled.div`
     flex-direction: ${(props) =>
       props.flexDirections ? props.flexDirections[0] || 'row' : 'row'};
     display: flex;
-    justify-content: ${props => props.centerX ? 'center' : 'flex-start'};
-    align-items: ${props => props.centerY ? 'center' : 'flex-start'};
+    justify-content: ${(props) => (props.centerX ? 'center' : 'flex-start')};
+    align-items: ${(props) => (props.centerY ? 'center' : 'flex-start')};
     flex-wrap: wrap;
     margin: ${(props) =>
       props.standardWidth
         ? '0'
-        : `0 -${props.spacingX}px 0 -${props.spacingX}px`};
+        : `-${props.spacingY}px -${props.spacingX}px -${props.spacingY}px -${props.spacingX}px`};
 
   ${(props) =>
     props.flexDirections &&

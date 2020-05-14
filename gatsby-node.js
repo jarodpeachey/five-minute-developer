@@ -65,6 +65,18 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
+
+  result.data.categories.edges.forEach(({ node }, index) => {
+    const path = `/category/${node.slug}`;
+
+    createPage({
+      path,
+      component: require.resolve('./src/templates/category.js'),
+      context: {
+        category: node.slug,
+      },
+    });
+  });
 };
 
 // exports.createPages = async ({ graphql, actions }) => {
