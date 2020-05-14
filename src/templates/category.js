@@ -29,8 +29,9 @@ const PostTemplate = ({ data, pageContext, location }) => {
     <Layout>
       <HeroWrapper
         color={
-          (category.metadata.color && category.metadata.color) ||
-          theme.color.primary.main
+          category.metadata && category.metadata.color
+            ? category.metadata.color
+            : theme.color.primary.main
         }
       >
         <HeroTitle>{category.title}</HeroTitle>
