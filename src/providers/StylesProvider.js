@@ -44,7 +44,7 @@ const GlobalStyle = createGlobalStyle`
   height: auto !important;
   display: inline-block !important;
   padding-right: ${(props) => props.width}px !important;
-  p, ul, li, span {
+  p, ul, li, span, input, textarea {
     font-family: 'Heebo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
   }
@@ -54,30 +54,45 @@ const GlobalStyle = createGlobalStyle`
     color: ${(props) => props.theme.color.text.paragraph};
   }
   a {
-    background-color: ${(props) => props.theme.color.primary.main};
-    background-image: -webkit-linear-gradient(left, ${(props) =>
-      props.theme.color.primary.dark} 0%, ${(props) =>
-  props.theme.color.primary.light} 50%, transparent 50%);
+    // background-color: ${(props) => props.theme.color.primary.main};
+        background-image: -webkit-linear-gradient(left, ${(props) =>
+          props.theme.color.primary.dark} 0%, ${(props) =>
+  props.theme.color.primary.light} 80%);
+    background-size: 100% 100%;
+    color: transparent;
     background-position: 0 0;
-    background-size: 200% 200%;
-    // color: transparent;
     -webkit-transition: .1s .2s;
     -webkit-background-clip: text;
+    text-decoration: none;
+        transition: all .2s;
   }
   a:hover {
-    background-position: 0 0;
+    border-bottom: 1px solid ${(props) => props.theme.color.primary.light};
+  }
+  a.light {
+    color: #ffffff90;
+    background-image: none;
+  }
+  a.light:hover {
+        background-image: -webkit-linear-gradient(left, ${(props) =>
+          props.theme.color.primary.dark} 0%, ${(props) =>
+  props.theme.color.primary.light} 80%);
+    background-size: 100% 100%;
     color: transparent;
-    transition: .4s 0;
+    background-position: 0 0;
+    -webkit-transition: .1s .2s;
+    -webkit-background-clip: text;
+    text-decoration: none;
+        transition: all .2s;
   }
   a.no-decoration {
-    background-color: transparent;
     background-image: none;
     color: inherit;
     transition: none;
     text-decoration: none;
   }
   .light {
-    color: ${(props) => props.theme.color.text.light} !important;
+    color: ${(props) => props.theme.color.text.light};
   }
   pre, code {
     overflow: auto;
@@ -114,6 +129,6 @@ const GlobalStyle = createGlobalStyle`
   h4,
   h5,
   h6 {
-    color: ${(props) => props.theme.color.text.heading} !important;
+    color: ${(props) => props.theme.color.text.heading};
   }
 `;

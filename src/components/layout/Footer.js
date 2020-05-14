@@ -6,6 +6,7 @@ import Row from '../grid/Row';
 import Line from '../Line';
 import Section from './Section';
 import { ThemeContext } from '../theme';
+import { Link } from 'gatsby';
 
 const Footer = () => {
   const theme = useContext(ThemeContext);
@@ -36,6 +37,15 @@ const Footer = () => {
               Tips, tricks and tutorials to help you advance your career, five
               minutes at a time.
             </h3>
+            <LinkItem className='light' href=''>
+              Contact Us
+            </LinkItem>
+            {/* </div>
+            <div widths={[6]}>
+              {' '} */}
+            <LinkItem className='light' href=''>
+              Write for Us
+            </LinkItem>
 
             {/* <FooterMenu widths={[6]}>
               <FooterMenuLink
@@ -60,60 +70,25 @@ const Footer = () => {
               </FooterMenuLink>
             </FooterMenu> */}
           </div>
+          {/* <Row breakpoints={[0]} spacing={[24]}>
+            <div widths={[6]}> */}
+          {/* </div>
+          </Row> */}
         </Section>
       ) : null}
     </>
   );
 };
 
-const FooterWrapper = styled.div`
-  width: 100%;
-  background: ${(props) => props.theme.color.primary.backgroundDark};
+const Title = styled.h3`
   color: white;
-  display: block;
-  margin-top: auto;
+  margin-top: 0;
 `;
 
-const FooterTitle = styled.div`
-  display: flex;
-  height: 100%;
-  align-items: center;
-  height: 50px;
-  h2 {
-    margin: 0;
-  }
-`;
-
-const FooterContainer = styled.div`
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
-`;
-
-const FooterMenu = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const FooterMenuLink = styled.a`
-  padding: 12px !important;
-  font-size: 18px !important;
-  width: 50px;
-  height: 50px;
-  text-decoration: none;
-  background: transparent !important;
-  color: white !important;
-  display: block;
-  display: flex;
-  border-radius: 50px;
-  align-items: center;
-  justify-content: center;
-  * {
-    font-size: 22px !important;
-  }
-  :hover {
-    background: #ffffff30 !important;
-  }
+const LinkItem = styled(Link)`
+  display: inline-block;
+  margin: 0 8px;
+  font-size: 14px;
 `;
 
 export default Footer;

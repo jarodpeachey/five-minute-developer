@@ -90,7 +90,7 @@ const StyledButton = styled.button`
       ? '10px 25px'
       : '11px 26px'} !important;
   border: none !important;
-  border-radius: 50px;
+  border-radius: 5px;
   cursor: ${(props) => (props.disabled ? 'initial' : 'pointer')} !important;
   // transition-duration: 0.5s !important;
   letter-spacing: 1.1px !important;
