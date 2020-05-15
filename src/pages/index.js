@@ -16,7 +16,6 @@ const IndexPage = ({ data, location }) => {
       <Hero />
       <AboutSection />
       <RecentPostsSection />
-      <SEO />
     </Layout>
   );
 };

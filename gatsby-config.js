@@ -54,6 +54,7 @@ module.exports = {
     },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
+    'gatsby-plugin-netlify',
     {
       resolve: 'gatsby-plugin-zopfli',
       options: {
