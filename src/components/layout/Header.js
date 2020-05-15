@@ -85,7 +85,7 @@ const Header = ({ siteTitle }) => {
                     </span>
                     <span
                       className='desktop inline'
-                      style={{ top: -6, position: 'relative' }}
+                      style={{ top: 1, position: 'relative' }}
                     >
                       Five Minute Developer
                     </span>
