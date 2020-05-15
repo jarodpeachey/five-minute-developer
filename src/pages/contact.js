@@ -55,7 +55,7 @@ const Contact = ({ data, pageContext, location }) => {
 
       const subject = `Message from ${name}`;
 
-      window.location.href = `mailto:jwpeachey107@aol.com?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:jarod@fiveminutedev.com?subject=${subject}&body=${body}`;
     }
   };
 
@@ -123,8 +123,8 @@ const Contact = ({ data, pageContext, location }) => {
               <h2>Jarod Peachey</h2>
               Email{' '}
               <Info>
-                <a href='mailto:jarodpeachey@gmail.com'>
-                  jarodpeachey@gmail.com
+                <a href='mailto:jarod@fiveminutedev.com'>
+                  jarod@fiveminutedev.com
                 </a>
               </Info>
               <br />
