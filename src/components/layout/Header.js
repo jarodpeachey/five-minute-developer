@@ -14,6 +14,7 @@ import Spacer from '../Spacer';
 import Row from '../grid/Row';
 import { isBrowser } from '../../utils/isBrowser';
 import { ThemeContext } from '../theme';
+import whiteLogo from '../../images/bare_invert.png';
 
 const Header = ({ siteTitle }) => {
   const { scrolled, setScrolled } = useContext(AppContext);
@@ -78,8 +79,10 @@ const Header = ({ siteTitle }) => {
                   }
                   scrolled={scrolled}
                 >
-                  <Link className='no-decoration' to='/'>
-                    <span className='logo'>{'<5>'}</span>
+                  <Link className='no-decoration' to='/' style={{ display: 'flex', alignItems: 'center' }}>
+                    <span className='logo'>
+                      <img src={whiteLogo} />
+                    </span>
                     <span
                       className='desktop inline'
                       style={{ top: -6, position: 'relative' }}

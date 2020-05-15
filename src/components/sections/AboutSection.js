@@ -6,6 +6,7 @@ import Row from '../grid/Row';
 import Spacer from '../Spacer';
 import { ThemeContext } from '../theme';
 import Button from '../Button';
+import logo from '../../images/bare.png';
 
 const AboutSection = ({ data }) => {
   const theme = useContext(ThemeContext);
@@ -57,12 +58,13 @@ const AboutSection = ({ data }) => {
         }}
       > */}
           <Icon
+            className='logo'
             style={{
               fontFamily: 'Raleway',
               fontWeight: 'bold',
             }}
           >
-            {'<5>'}
+            <img style={{ width: 130 }} src={logo} />
           </Icon>
           <h1 className='center'>Learn like your career depends on it</h1>
           <p className='center'>Because it does.</p>
