@@ -27,7 +27,6 @@ const SEO = ({ lang, description, title, author, meta }) => {
 
   return (
     <Helmet>
-      <title>{title}</title>
       <meta name='description' content={description} />
     </Helmet>
   );

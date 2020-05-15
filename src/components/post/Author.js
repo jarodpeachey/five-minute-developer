@@ -37,6 +37,7 @@ const Author = ({ author }) => {
               <AuthorSocial>
                 {author.metadata.email && (
                   <AuthorSocialItem
+                    className='no-decoration'
                     title='Email'
                     href={`mailto:${author.metadata.email}`}
                   >
@@ -45,6 +46,7 @@ const Author = ({ author }) => {
                 )}
                 {author.metadata.twitter && (
                   <AuthorSocialItem
+                    className='no-decoration'
                     title='Twitter'
                     href={author.metadata.twitter}
                     color='#00acee'
@@ -54,6 +56,7 @@ const Author = ({ author }) => {
                 )}
                 {author.metadata.github && (
                   <AuthorSocialItem
+                    className='no-decoration'
                     title='Github'
                     href={author.metadata.github}
                     color='#24292e'
@@ -63,6 +66,7 @@ const Author = ({ author }) => {
                 )}
                 {author.metadata.website && (
                   <AuthorSocialItem
+                    className='no-decoration'
                     title='Website'
                     href={author.metadata.website}
                     color={theme.color.primary.light}

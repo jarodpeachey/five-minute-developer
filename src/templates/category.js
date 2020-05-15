@@ -18,6 +18,7 @@ import Author from '../components/post/Author';
 import Spacer from '../components/Spacer';
 import Layout from '../components/layout/Layout';
 import Posts from '../components/Posts';
+import { Helmet } from 'react-helmet';
 
 library.add(faCheck, faUser, faCalendar, faCommentAlt, faArrowUp);
 
@@ -27,6 +28,9 @@ const PostTemplate = ({ data, pageContext, location }) => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>{`${category.title} Posts - Five Minute Developer`}</title>
+      </Helmet>
       <HeroWrapper
         color={
           category.metadata && category.metadata.color
@@ -66,9 +70,9 @@ const HeroWrapper = styled.div`
   left: 0;
   background: ${(props) => props.theme.color.gray.eleven};
   background: linear-gradient(
-    to bottom,
-    ${(props) => props.theme.color.primary.main},
-    ${(props) => props.theme.color.primary.main}
+    160deg,
+    ${(props) => props.theme.color.primary.main} 0%,
+    ${(props) => props.theme.color.primary.lighter} 100%
   );
 `;
 

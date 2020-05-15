@@ -17,6 +17,7 @@ import Line from '../components/Line';
 import Author from '../components/post/Author';
 import Spacer from '../components/Spacer';
 import Layout from '../components/layout/Layout';
+import { Helmet } from 'react-helmet';
 
 library.add(faCheck, faUser, faCalendar, faCommentAlt, faArrowUp);
 
@@ -47,6 +48,9 @@ const PostTemplate = ({ data, pageContext, location }) => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>{`${post.title} - Five Minute Developer`}</title>
+      </Helmet>
       <FeaturedImageWrapper
         scroll={scroll}
         transition={transition}

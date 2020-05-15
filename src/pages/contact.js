@@ -21,6 +21,7 @@ import Posts from '../components/Posts';
 import Row from '../components/grid/Row';
 import Button from '../components/Button';
 import Card from '../components/Card';
+import { Helmet } from 'react-helmet';
 
 library.add(faCheck, faUser, faCalendar, faCommentAlt, faArrowUp);
 
@@ -60,6 +61,9 @@ const Contact = ({ data, pageContext, location }) => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Contact - Five Minute Developer</title>
+      </Helmet>
       <HeroWrapper>
         <HeroTitle>Contact Us</HeroTitle>
       </HeroWrapper>
@@ -158,9 +162,9 @@ const HeroWrapper = styled.div`
   left: 0;
   background: ${(props) => props.theme.color.gray.eleven};
   background: linear-gradient(
-    to bottom,
-    ${(props) => props.theme.color.primary.main},
-    ${(props) => props.theme.color.primary.main}
+    160deg,
+    ${(props) => props.theme.color.primary.main} 0%,
+    ${(props) => props.theme.color.primary.lighter} 100%
   );
 `;
 
