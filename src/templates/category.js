@@ -19,6 +19,7 @@ import Spacer from '../components/Spacer';
 import Layout from '../components/layout/Layout';
 import Posts from '../components/Posts';
 import { Helmet } from 'react-helmet';
+import SEO from '../components/SEO';
 
 library.add(faCheck, faUser, faCalendar, faCommentAlt, faArrowUp);
 
@@ -28,9 +29,10 @@ const PostTemplate = ({ data, pageContext, location }) => {
 
   return (
     <Layout>
-      <Helmet>
-        <title>{`${category.title} Posts - Five Minute Developer`}</title>
-      </Helmet>
+      <SEO
+        title={`${category.title} Posts - Five Minute Developer`}
+        description={`Web development posts about ${category.title}`}
+      />
       <HeroWrapper
         color={
           category.metadata && category.metadata.color

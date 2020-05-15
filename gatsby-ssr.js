@@ -5,8 +5,6 @@ import Layout from './src/components/layout/Layout';
 import { AppProvider } from './src/providers/AppProvider';
 
 export const wrapRootElement = ({ element }) => {
-  console.log(element);
-
   return (
     // <FirebaseProvider>
     <AppProvider>

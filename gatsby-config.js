@@ -7,11 +7,11 @@ const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   siteMetadata: {
-    title: 'The 5-Minute Developer',
+    title: 'Five Minute Developer',
     author: 'Jarod Peachey',
     description:
-      'Level-up your development skills 5 minutes at a time with tips, tricks, tutorials and articles.',
-    siteUrl: 'https://fiveminutedeveloper.netlify.app',
+      'Level-up your development skills 5 minutes at a time with tips, tricks, tutorials and articles on React, HTML, CSS, Javascript, Gatsby and the JAMstack.',
+    siteUrl: 'https://fiveminutedev.com',
   },
   plugins: [
     {
@@ -54,5 +54,11 @@ module.exports = {
     },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
+    {
+      resolve: 'gatsby-plugin-zopfli',
+      options: {
+        extensions: ['css', 'html', 'js', 'svg'],
+      },
+    },
   ],
 };

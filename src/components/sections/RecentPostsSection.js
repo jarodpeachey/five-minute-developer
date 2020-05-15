@@ -49,7 +49,6 @@ const RecentPostsSection = ({ data }) => {
     post.metadata.categories &&
       post.metadata.categories.forEach((postCategory) => {
         if (postCategory.slug === category) {
-          console.log(`${postCategory.slug} matches ${category}`);
           boolean = true;
         }
       });

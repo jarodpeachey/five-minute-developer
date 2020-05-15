@@ -18,6 +18,7 @@ import Author from '../components/post/Author';
 import Spacer from '../components/Spacer';
 import Layout from '../components/layout/Layout';
 import { Helmet } from 'react-helmet';
+import SEO from '../components/SEO';
 
 library.add(faCheck, faUser, faCalendar, faCommentAlt, faArrowUp);
 
@@ -51,6 +52,10 @@ const PostTemplate = ({ data, pageContext, location }) => {
       <Helmet>
         <title>{`${post.title} - Five Minute Developer`}</title>
       </Helmet>
+      <SEO
+        title={`${post.title} Posts - Five Minute Developer`}
+        description={post.metadata.description}
+      />
       <FeaturedImageWrapper
         scroll={scroll}
         transition={transition}
@@ -516,6 +521,7 @@ export const pageQuery = graphql`
           title
           slug
         }
+        description
         author {
           metadata {
             description

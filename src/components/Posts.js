@@ -10,8 +10,6 @@ import { shortenText } from '../utils/shortenText';
 import Button from './Button';
 
 const Posts = ({ category, color, gray, posts, list }) => {
-  console.log(posts);
-
   return (
     <>
       {list ? (

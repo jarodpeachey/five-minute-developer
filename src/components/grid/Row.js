@@ -16,7 +16,6 @@ const Row = ({
   centerY,
   centerX,
 }) => {
-  console.log(breakpoints[0]);
   return (
     <Wrapper
       standardWidth={standardWidth}

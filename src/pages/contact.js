@@ -22,6 +22,7 @@ import Row from '../components/grid/Row';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import { Helmet } from 'react-helmet';
+import SEO from '../components/SEO';
 
 library.add(faCheck, faUser, faCalendar, faCommentAlt, faArrowUp);
 
@@ -43,7 +44,6 @@ const Contact = ({ data, pageContext, location }) => {
   };
 
   const onSubmit = (e) => {
-    console.log(e);
     if (!message || !email || !name) {
       setError(true);
     } else {
@@ -61,9 +61,10 @@ const Contact = ({ data, pageContext, location }) => {
 
   return (
     <Layout>
-      <Helmet>
-        <title>Contact - Five Minute Developer</title>
-      </Helmet>
+      <SEO
+        title='Contact - Five Minute Developer'
+        description='Contact Jarod, the founder of Five Minute Developer. Inquire about guest writing, advertising, and everything else.'
+      />
       <HeroWrapper>
         <HeroTitle>Contact Us</HeroTitle>
       </HeroWrapper>

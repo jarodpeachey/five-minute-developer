@@ -6,8 +6,6 @@ import Card from '../Card';
 import { ThemeContext } from '../theme';
 
 const Author = ({ author }) => {
-  console.log(author);
-
   const theme = useContext(ThemeContext);
 
   return (
