@@ -37,13 +37,13 @@ const Footer = () => {
               Tips, tricks and tutorials to help you advance your career, five
               minutes at a time.
             </h3>
-            <LinkItem className='light' href=''>
+            <LinkItem className='light' to='/contact'>
               Contact Us
             </LinkItem>
             {/* </div>
             <div widths={[6]}>
               {' '} */}
-            <LinkItem className='light' href=''>
+            <LinkItem className='light' href='/contact'>
               Write for Us
             </LinkItem>
 

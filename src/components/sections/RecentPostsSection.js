@@ -90,7 +90,9 @@ const RecentPostsSection = ({ data }) => {
           }
       `}
     >
-      <Title className='center'>Recent Posts</Title>
+      <Title className='center' id='posts'>
+        Recent Posts
+      </Title>
       {/* <PostsWrapper> */}
       {categories.allCosmicjsCategories &&
         categories.allCosmicjsCategories.edges.length > 0 &&

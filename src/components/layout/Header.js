@@ -80,7 +80,10 @@ const Header = ({ siteTitle }) => {
                 >
                   <Link className='no-decoration' to='/'>
                     <span className='logo'>{'<5>'}</span>
-                    <span className='desktop inline'>
+                    <span
+                      className='desktop inline'
+                      style={{ top: -6, position: 'relative' }}
+                    >
                       Five Minute Developer
                     </span>
                   </Link>
@@ -112,7 +115,7 @@ const Header = ({ siteTitle }) => {
           >
             <div className='container'>
               <h3 className='m-none'>Categories</h3>
-              <Spacer height={24} />
+              <Spacer height={18} />
               {categories.allCosmicjsCategories &&
                 categories.allCosmicjsCategories.edges.length > 0 &&
                 categories.allCosmicjsCategories.edges.map(({ node }) => {
@@ -132,6 +135,12 @@ const Header = ({ siteTitle }) => {
                     </MobileMenuItem>
                   );
                 })}
+              <Spacer height={24} />
+              <h3 className='m-none'>Other</h3>
+              <Spacer height={18} />
+              <MobileMenuItem className='no-decoration' to='/contact'>
+                <span>Contact</span>
+              </MobileMenuItem>
             </div>
           </MobileMenu>
         </>
@@ -154,7 +163,7 @@ const Wrapper = styled.header`
       props.isBlog ? '32px' : props.scrolled ? '8px' : '32px'};
     padding-bottom: ${(props) =>
       props.isBlog ? '32px' : props.scrolled ? '8px' : '32px'};
-    transition: all 0.2 ease-in;
+    transition: all 0.2s ease-out;
   }
   background: ${(props) =>
     props.isBlog
@@ -168,8 +177,8 @@ const Wrapper = styled.header`
     color: ${(props) =>
       props.isBlog ? 'white' : props.scrolled ? 'white' : 'white'} !important;
   }
-  transition-duration: 0.2;
-  transition: all 0.2 ease-in;
+  transition: all 0.2s ease-out;
+
   box-shadow: ${(props) =>
     props.isBlog
       ? 'none'
@@ -198,6 +207,8 @@ const SiteTitle = styled.h1`
   letter-spacing: 3px;
   text-transform: uppercase;
   display: flex;
+  transition: all 0.2s ease-out;
+
   align-items: center;
   color: ${(props) =>
     props.isBlog ? 'white' : props.scrolled ? 'white' : 'white'} !important;
@@ -217,6 +228,7 @@ const SiteTitle = styled.h1`
     margin-right: 8px;
     position: relative;
     top: -1px;
+    transition: all 0.2s ease-out;
   }
 `;
 

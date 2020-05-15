@@ -89,6 +89,14 @@ const GlobalStyle = createGlobalStyle`
     background-image: none;
     color: inherit;
     transition: none;
+    border-bottom: none;
+    text-decoration: none;
+  }
+  a.no-decoration:hover {
+    background-image: none;
+    color: inherit;
+    transition: none;
+    border-bottom: none;
     text-decoration: none;
   }
   .light {

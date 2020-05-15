@@ -81,7 +81,7 @@ const AboutSection = ({ data }) => {
             Go ahead. Click the button to start learning!
           </p>
           <p className='center'>Seriously. Click it.</p>
-          <Button link='/blog' center>
+          <Button link='#posts' center>
             Start Learning!
           </Button>
           <Spacer height={32} />

@@ -2,11 +2,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link, useStaticQuery } from 'gatsby';
+import ReactMarkdown from 'react-markdown';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Row from './grid/Row';
 import Section from './layout/Section';
 import { shortenText } from '../utils/shortenText';
-import ReactMarkdown from 'react-markdown';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Button from './Button';
 
 const Posts = ({ category, color, gray, posts, list }) => {
   console.log(posts);
@@ -84,6 +85,7 @@ const Posts = ({ category, color, gray, posts, list }) => {
                       />
                     )}
                   </ListPostExcerpt>
+                  <Button small>Read More</Button>
                 </ListPost>
               </div>
             );
@@ -176,6 +178,8 @@ const Post = styled(Link)`
     box-shadow: 16px 16px 0px -3px ${(props) => props.color}20;
     box-shadow: 8px 8px 0px ${(props) => props.color}20;
     position: relative;
+    border: 1px solid ${(props) => props.theme.color.gray.three} !important;
+    border-left: 5px solid ${(props) => props.color} !important;
     transition: all 0.2s ease-out;
     top: -3px;
     left: -3px;
@@ -210,14 +214,24 @@ const PostExcerpt = styled.p`
 `;
 
 const ListPost = styled(Link)`
-  padding-left: 16px;
   position: relative;
+  text-decoration: none;
   top: 0;
+  margin-bottom: 56px;
   left: 0;
-  border-left: 5px solid ${(props) => props.theme.color.primary.main};
   background: white;
   text-decoration: none;
   display: block;
+  ::after {
+    height: 3px;
+    position: absolute;
+    display: block;
+    content: '';
+    width: 100px;
+    left: calc(50% - 50px);
+    bottom: -48px;
+    background: ${(props) => props.theme.color.primary.main};
+  }
 `;
 
 const ListPostTitle = styled.h2`

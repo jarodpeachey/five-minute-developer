@@ -163,6 +163,11 @@ const PostTemplate = ({ data, pageContext, location }) => {
   .container {
     position: relative;
   }
+  img {
+    max-width: 769px;
+    width: 100%;
+    margin: 0 auto;
+  }
   position: relative;
   top: -94px;
    padding-top: 112px;      `}
@@ -187,7 +192,7 @@ const PostTemplate = ({ data, pageContext, location }) => {
         {/* </Row> */}
         {/* {post.content} */}
       </Section>
-      <Section verticalPadding dark>
+      {/* <Section verticalPadding dark>
         <div className='center'>
           <h1 className='logo'>5 Minute Developer</h1>
           <Line
@@ -201,7 +206,7 @@ const PostTemplate = ({ data, pageContext, location }) => {
             minutes at a time.
           </h3>
         </div>
-      </Section>
+      </Section> */}
     </Layout>
   );
 };

@@ -81,7 +81,7 @@ const Layout = (props) => {
         <ContentWrapper />
       )}
       {props.children}
-      {isBrowser() && !window.location.pathname.includes('blog/') && <Footer />}
+      <Footer />
       {notificationMessage && (
         <Notification message={notificationMessage} type={notificationType} />
       )}

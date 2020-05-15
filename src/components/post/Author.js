@@ -92,9 +92,9 @@ const StyledAuthor = styled.div`
 // `;
 
 const AuthorImage = styled.img`
-  width: 75px;
-  border-radius: 50px;
-  margin-right: 14px;
+  width: 75px !important;
+  border-radius: 50px !important;
+  margin-right: 14px !important;
 `;
 
 const AuthorInfo = styled.div``;
