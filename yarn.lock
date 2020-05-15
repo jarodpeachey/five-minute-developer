@@ -13466,6 +13466,16 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
+typeface-heebo@^0.0.72:
+  version "0.0.72"
+  resolved "https://registry.yarnpkg.com/typeface-heebo/-/typeface-heebo-0.0.72.tgz#7f449615830919d0a2e46c53ef0f45af7a36160a"
+  integrity sha512-Yp/o0gw0u1WYq3m8R1VOMOpc8XzP8cJcp1TKQ6EQPNPk6R8HYOpINJ/BJHwKeFP3uDFNHjP3zeHeToefcnc3iA==
+
+typeface-roboto-mono@^0.0.75:
+  version "0.0.75"
+  resolved "https://registry.yarnpkg.com/typeface-roboto-mono/-/typeface-roboto-mono-0.0.75.tgz#00c4543662066a837c014c251ee5140fb66a5ad8"
+  integrity sha512-dYfyXd6HrKyMC/PuBAAtay0tZKsBrzxIW/fBY325vLxFfi/IDKSuyTkWxkU4lyZV6KPHetFnJ661PNXzz2FS/w==
+
 unbzip2-stream@^1.0.9:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/unbzip2-stream/-/unbzip2-stream-1.4.2.tgz#84eb9e783b186d8fb397515fbb656f312f1a7dbf"

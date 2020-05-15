@@ -1,10 +1,8 @@
 /* LAYOUT AND GRID SYSTEM
 --------------------------------------------------------------- */
-
+/* 
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter+Var:wght@400;600;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;500;700&display=swap'); */
 
 #header {
   z-index: 999999;
