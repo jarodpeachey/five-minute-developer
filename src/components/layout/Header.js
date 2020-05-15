@@ -79,9 +79,13 @@ const Header = ({ siteTitle }) => {
                   }
                   scrolled={scrolled}
                 >
-                  <Link className='no-decoration' to='/' style={{ display: 'flex', alignItems: 'center' }}>
+                  <Link
+                    className='no-decoration'
+                    to='/'
+                    style={{ display: 'flex', alignItems: 'center' }}
+                  >
                     <span className='logo'>
-                      <img src={whiteLogo} />
+                      <img src={whiteLogo} alt='Five Minute Developer Logo' />
                     </span>
                     <span
                       className='desktop inline'

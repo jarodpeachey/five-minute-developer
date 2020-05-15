@@ -64,7 +64,11 @@ const AboutSection = ({ data }) => {
               fontWeight: 'bold',
             }}
           >
-            <img style={{ width: 130 }} src={logo} />
+            <img
+              style={{ width: 130 }}
+              src={logo}
+              alt='Five Minute Developer Logo'
+            />
           </Icon>
           <h1 className='center'>Learn like your career depends on it</h1>
           <p className='center'>Because it does.</p>
