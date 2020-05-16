@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 import { Link } from 'gatsby';
 
 const Button = ({
+  customStyles,
   children,
   primary,
   className,
@@ -22,7 +23,7 @@ const Button = ({
   disabled,
 }) => {
   return (
-    <span>
+    <>
       {link ? (
         <Link
           className={
@@ -37,6 +38,7 @@ const Button = ({
           to={link}
         >
           <StyledButton
+            customStyles={customStyles}
             disabled={disabled}
             small={small}
             medium={medium}
@@ -56,6 +58,7 @@ const Button = ({
         </Link>
       ) : (
         <StyledButton
+          customStyles={customStyles}
           disabled={disabled}
           small={small}
           medium={medium}
@@ -72,7 +75,7 @@ const Button = ({
           {children}
         </StyledButton>
       )}
-    </span>
+    </>
   );
 };
 
@@ -137,7 +140,11 @@ box-shadow: ${(props) =>
     box-shadow: none;
     transition: all 0.1s ease-out;
   }
-
+  ${(props) =>
+    props.customStyles &&
+    css`
+      ${props.customStyles}
+    `}
 `;
 
 export default Button;

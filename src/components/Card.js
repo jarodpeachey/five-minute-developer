@@ -2,26 +2,20 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'gatsby';
 
-const Card = ({ children, title, fancy, error }) => {
+const Card = ({ children, title, fancy, error, customStyles }) => {
   return (
-    <Wrapper>
-      <StyledCard error={error} fancy={fancy}>
-        {title && (
-          <Title error={error} fancy={fancy}>
-            {title}
-          </Title>
-        )}
-        {children}
-      </StyledCard>
-    </Wrapper>
+    <StyledCard customStyles={customStyles} error={error} fancy={fancy}>
+      {title && (
+        <Title error={error} fancy={fancy}>
+          {title}
+        </Title>
+      )}
+      {children}
+    </StyledCard>
   );
 };
 
-const Wrapper = styled.div`
-  // margin: 16px 0;
-  background: ${(props) => (props.window ? '#ffffff40' : 'white')};
-  backdrop-filter: blur(8px);
-`;
+const Wrapper = styled.div``;
 
 const StyledCard = styled.div`
   padding: 16px;
@@ -31,9 +25,7 @@ const StyledCard = styled.div`
   color: ${(props) => (props.error ? `${props.theme.color.error}` : '')};
   border-radius: 5px;
   border: ${(props) =>
-    props.error
-      ? 'none'
-      : `1px solid ${props.theme.color.gray.three}`};
+    props.error ? 'none' : `1px solid ${props.theme.color.gray.three}`};
   // box-shadow: 2px 4px 10px 0px ${(props) => props.theme.color.gray.three};
   ${(props) =>
     props.fancy &&
@@ -59,6 +51,11 @@ const StyledCard = styled.div`
         top: -64px;
         left: -16px;
       }
+    `};
+  ${(props) =>
+    props.customStyles &&
+    css`
+      ${props.customStyles}
     `};
 `;
 

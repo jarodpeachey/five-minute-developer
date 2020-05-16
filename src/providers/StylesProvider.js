@@ -138,5 +138,6 @@ const GlobalStyle = createGlobalStyle`
   h5,
   h6 {
     color: ${(props) => props.theme.color.text.heading};
+    font-family: "Lato";
   }
 `;
